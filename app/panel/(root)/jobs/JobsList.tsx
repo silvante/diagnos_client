@@ -95,7 +95,7 @@ export default function JobsList() {
           </div>
         )}
         {currentJob ? (
-          <div className="bg-white rounded-md transition-colors border border-gray-300 flex flex-col border-b-2 border-b-transparent hover:border-b-violet-600">
+          <div className="bg-white rounded-md transition-colors border border-gray-300 flex flex-col border-b-2 border-b-gray-300 hover:border-b-violet-600">
             <div className="border-b border-gray-300 p-4 flex gap-3 items-center">
               <Avatar>
                 <AvatarImage src={currentJob.worker.avatar} />

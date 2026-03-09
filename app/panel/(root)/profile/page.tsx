@@ -13,10 +13,10 @@ export default function ProfilePage() {
   return (
     <div className="w-full">
       <Heading text="Sizning profilingiz" />
-      <div className="w-full py-10 flex flex-col items-center justify-center gap-10">
+      <div className="w-full py-5 flex flex-col items-center justify-center gap-5">
         <div className="w-full flex">
           {/* Profile Card */}
-          <div className="w-full flex flex-col md:flex-row md:items-center gap-5 rounded-xl border border-gray-300 p-5">
+          <div className="bg-white w-full flex flex-col md:flex-row md:items-center gap-5 rounded-xl border border-gray-300 p-5">
             <Link
               href="/panel/profile/settings"
               className="bg-gray-300 w-28 h-28 rounded-full overflow-hidden border border-gray-400 flex items-center justify-center mx-auto"
@@ -47,7 +47,7 @@ export default function ProfilePage() {
         </div>
 
         {/* Details Section */}
-        <div className="w-full rounded-2xl border border-gray-300 p-4 md:p-8 space-y-6">
+        <div className="bg-white w-full rounded-2xl border border-gray-300 p-4 md:p-8 space-y-6">
           <div className="space-y-2 border-b border-gray-300 pb-3">
             <p className="text-lg font-semibold text-gray-950">Foydalanuvchi nomi:</p>
             <p className="text-gray-950">
