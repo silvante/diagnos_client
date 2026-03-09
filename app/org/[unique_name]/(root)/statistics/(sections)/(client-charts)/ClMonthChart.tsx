@@ -57,7 +57,7 @@ export default function ClMonthChart({ data }: { data: ClientsByMonth[] }) {
   };
 
   return (
-    <div className="p-5 space-y-5 rounded-2xl border border-gray-300 shadow-md border-b-3 border-b-violet-600 flex-1">
+    <div className="p-5 space-y-5 rounded-2xl border border-gray-300 border-b-3 border-b-violet-600 flex-1">
       <Heading text="Oxirgi 12 oy" />
       <div className="flex gap-4">
         <button

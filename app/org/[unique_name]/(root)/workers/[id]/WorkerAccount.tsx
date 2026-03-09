@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 export default function WorkerAccount({ worker }: { worker: Worker }) {
   const account = worker.worker;
   return (
-    <div className="rounded-2xl border border-gray-300 shadow-md overflow-hidden">
+    <div className="rounded-2xl border border-gray-300 overflow-hidden">
       <div className="p-4 lg:p-8 border-b border-b-gray-300 space-y-5">
         <Avatar className="w-32 h-32">
           <AvatarImage src={account.avatar} />

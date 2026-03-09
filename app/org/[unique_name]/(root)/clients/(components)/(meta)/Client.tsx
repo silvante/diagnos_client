@@ -3,7 +3,7 @@ import { Client } from "@/app/types/User";
 export default function ClientCard({ client }: { client: Client }) {
   const date = new Date(client.created_at);
   return (
-    <div className="flex flex-col border rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md">
+    <div className="flex flex-col border rounded-xl overflow-hidden bg-white shadow-sm hover:border-violet-700">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full border-gray-300 px-4 py-2 border-b transition">
         <div className="flex flex-wrap items-center gap-2">
           <span className="font-semibold text-gray-800">

@@ -140,7 +140,7 @@ export default function UpdateWorkerForm({ worker }: { worker: Worker }) {
   }
 
   return (
-    <div className="w-full rounded-2xl p-4 lg:p-8 space-y-5 bg-white shadow-md border border-gray-300">
+    <div className="w-full rounded-2xl p-4 lg:p-8 space-y-5 bg-white border border-gray-300">
       <Heading text="Formani to'ldiring!" />
       <form className="space-y-5" onSubmit={HandleUpdate}>
         {error !== "" && (

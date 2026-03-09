@@ -34,7 +34,7 @@ export default function Community() {
       </div>
       <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-5">
         <div
-          className={`rounded-xl flex items-center justify-between border border-gray-300 shadow-md p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
+          className={`rounded-xl flex items-center justify-between border border-gray-300 p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
             }`}
         >
           <div className="flex-1 space-y-2">
@@ -46,7 +46,7 @@ export default function Community() {
           </div>
         </div>
         <div
-          className={`rounded-xl flex items-center justify-between border border-gray-300 shadow-md p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
+          className={`rounded-xl flex items-center justify-between border border-gray-300 p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
             }`}
         >
           <div className="flex-1 space-y-2">
@@ -58,7 +58,7 @@ export default function Community() {
           </div>
         </div>
         <div
-          className={`rounded-xl flex items-center justify-between border border-gray-300 shadow-md p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
+          className={`rounded-xl flex items-center justify-between border border-gray-300 p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
             }`}
         >
           <div className="flex-1 space-y-2">
@@ -70,7 +70,7 @@ export default function Community() {
           </div>
         </div>
         <div
-          className={`rounded-xl flex items-center justify-between border border-gray-300 shadow-md p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
+          className={`rounded-xl flex items-center justify-between border border-gray-300 p-5 ${path !== "/" && "border-b-2 border-b-violet-600"
             }`}
         >
           <div className="flex-1 space-y-2">
@@ -92,7 +92,7 @@ export default function Community() {
               href={app.url}
               target="_blanck"
               key={app.id}
-              className="rounded-md border border-gray-300 shadow-md text_color p-2 flex gap-2 pr-3"
+              className="rounded-md border border-gray-300 text_color p-2 flex gap-2 pr-3"
             >
               <Image src={app.icon} alt={app.name} width={20} height={20} />
               <p>{app.name}</p>

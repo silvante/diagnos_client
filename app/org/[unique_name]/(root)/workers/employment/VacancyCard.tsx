@@ -11,7 +11,7 @@ export default function VacancyCard({
   organization: Organization;
 }) {
   return (
-    <div className="rounded-xl border border-gray-200 shadow-md flex flex-col">
+    <div className="rounded-xl border border-gray-200 flex flex-col">
       <div className="p-5 space-y-2 border-b border-gray-200">
         <div className="bg-gray-300 max-w-16 w-full aspect-square rounded-full overflow-hidden border border-gray-400">
           <Avatar className="w-full h-full">

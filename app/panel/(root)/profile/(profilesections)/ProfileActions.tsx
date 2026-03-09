@@ -13,7 +13,7 @@ export default function ProfileActions() {
     router.push("/");
   }
   return (
-    <div className="p-4 md:p-8 flex-1 rounded-2xl border border-gray-300 shadow-md w-full space-y-5">
+    <div className="p-4 md:p-8 flex-1 rounded-2xl border border-gray-300 w-full space-y-5">
       <Heading text="Xavfli hudud" />
       <div className="flex gap-5 flex-wrap">
         <button

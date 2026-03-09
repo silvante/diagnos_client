@@ -17,7 +17,7 @@ export default function OverallWorkers({ workers }: { workers: Worker[] }) {
   console.log(grouped);
 
   return (
-    <div className="border border-gray-300 shadow-md p-5 border-b-4 border-b-violet-600 rounded-xl space-y-3">
+    <div className="border border-gray-300 p-5 border-b-4 border-b-violet-600 rounded-xl space-y-3">
       <Heading text="Umumiy" />
       <div className="flex flex-col items-start gap-2">
         <h2 className="font-semibold text_color text-lg">

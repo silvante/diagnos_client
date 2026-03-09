@@ -6,7 +6,7 @@ import DeleteVacancyModule from "../(components)/DeleteVacancyModule";
 
 export default function VacancyActions({ vacancy }: { vacancy: Vacancy }) {
   return (
-    <div className="w-full border border-gray-300 shadow-md rounded-2xl p-4 lg:p-8 space-y-5 bg-white">
+    <div className="w-full border border-gray-300 rounded-2xl p-4 lg:p-8 space-y-5 bg-white">
       <Heading text="Amallar" />
       <div className="flex gap-5 flex-wrap">
         <DeleteVacancyModule vacancy={vacancy}>

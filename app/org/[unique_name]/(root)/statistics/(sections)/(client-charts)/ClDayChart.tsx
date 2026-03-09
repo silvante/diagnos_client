@@ -57,7 +57,7 @@ export default function RvDayChart({ data }: { data: ClientsByDay[] }) {
   };
 
   return (
-    <div className="p-5 space-y-5 rounded-2xl border border-gray-300 shadow-md w-full border-b-3 border-b-violet-600 overflow-x-auto">
+    <div className="p-5 space-y-5 rounded-2xl border border-gray-300 w-full border-b-3 border-b-violet-600 overflow-x-auto">
       <Heading text="Oxirgi 30 kun" />
       <div className="flex gap-4">
         <button

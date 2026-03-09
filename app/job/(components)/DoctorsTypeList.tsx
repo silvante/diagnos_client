@@ -13,7 +13,7 @@ export default function DoctorsTypeList({
         {currentJob.attached_types.map((item) => (
           <div
             key={item.id}
-            className="shadow-md border border-gray-300 rounded-2xl"
+            className="border border-gray-300 rounded-2xl"
           >
             <div className="p-4">
               <h3 className="text-lg font-bold">{item.type.name}</h3>

@@ -12,7 +12,7 @@ import {
 
 export default function Aside() {
   return (
-    <aside className="p-5 sticky top-0 left-0 h-screen bg-white border-r border-gray-300 shadow-md z-10 max-w-72 w-full hidden lg:flex flex-col gap-5">
+    <aside className="p-5 sticky top-0 left-0 h-screen bg-white border-r border-gray-300 z-10 max-w-72 w-full hidden lg:flex flex-col gap-5">
       <Diagnos link="/panel" />
       <div>
         <AsideLink href="/panel">

@@ -23,14 +23,14 @@ export default function RvTotal({ data }: { data: RevenueStats }) {
     <div className="space-y-5">
       <Heading text="Jami" />
       <div className="flex flex-wrap gap-4">
-        <div className="py-4 px-6 rounded-xl border-gray-300 border-b-violet-600 border-b-2 border shadow-md space-y-2">
+        <div className="py-4 px-6 rounded-xl border-gray-300 border-b-violet-600 border-b-2 border space-y-2">
           <h3 className="text-xl font-semibold text_color">Bu oy:</h3>
           <h3 className="text-lg font-semibold text_color">
             {thisMonth.total} <span className="text-violet-600">UZS</span>
           </h3>
           <p className="text-gray-600">Bu oyning umumiy daromadi.</p>
         </div>
-        <div className="py-4 px-6 rounded-xl border-gray-300 border-b-violet-600 border-b-2 border shadow-md space-y-2">
+        <div className="py-4 px-6 rounded-xl border-gray-300 border-b-violet-600 border-b-2 border space-y-2">
           <h3 className="text-xl font-semibold text_color">Oxirgi 12 oy:</h3>
           <h3 className="text-lg font-semibold text_color">
             {year} <span className="text-violet-600">UZS</span>
@@ -39,7 +39,7 @@ export default function RvTotal({ data }: { data: RevenueStats }) {
             Oxirgi 12 oyning (bir yil) umumiy daromadi.
           </p>
         </div>
-        <div className="py-4 px-6 rounded-xl border-gray-300 border-b-violet-600 border-b-2 border shadow-md space-y-2">
+        <div className="py-4 px-6 rounded-xl border-gray-300 border-b-violet-600 border-b-2 border space-y-2">
           <h3 className="text-xl font-semibold text_color">Umumiy daromad:</h3>
           <h3 className="text-lg font-semibold text_color">
             {total} <span className="text-violet-600">UZS</span>

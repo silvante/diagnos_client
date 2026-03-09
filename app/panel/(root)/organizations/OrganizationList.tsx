@@ -109,7 +109,7 @@ export default function OrganizationList() {
           organizations.map((organization: Organization) => (
             <div
               key={organization.id}
-              className="bg-white shadow-md rounded-md transition-colors border border-gray-300 flex flex-col border-b-2 border-b-transparent hover:border-b-violet-600"
+              className="bg-white rounded-md transition-colors border border-gray-300 flex flex-col border-b-2 border-b-transparent hover:border-b-violet-600"
             >
               <Link
                 className=""

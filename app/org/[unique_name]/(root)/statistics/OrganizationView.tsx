@@ -7,7 +7,7 @@ export default function OrganizationView({
   organization: Organization;
 }) {
   return (
-    <div className="border border-gray-300 shadow-md rounded-2xl w-full overflow-hidden">
+    <div className="border border-gray-300 rounded-2xl w-full overflow-hidden">
       {organization.banner && (
         <div className="w-full h-36 relative p-5 flex items-center justify-start">
           <img

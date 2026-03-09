@@ -68,7 +68,7 @@ export default function ClientSearchEngine({
 
   return (
     <div className="space-y-8">
-      <div className="p-5 bg-white border border-gray-300 shadow-md rounded-2xl space-y-5">
+      <div className="p-5 bg-white border border-gray-300 rounded-2xl space-y-5">
         {error !== "" && (
           <Alert variant="destructive">
             <ShieldAlert />

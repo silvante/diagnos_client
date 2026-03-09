@@ -78,7 +78,7 @@ export default function WorkersList() {
                 return (
                   <div
                     key={worker.id}
-                    className="flex flex-col border border-gray-300 rounded-xl bg-white overflow-hidden shadow-md"
+                    className="flex flex-col border border-gray-300 rounded-xl bg-white overflow-hidden"
                   >
                     <div className="p-5 border-b border-gray-300 flex flex-col justify-center items-center gap-4">
                       <Avatar className="w-20 h-20">

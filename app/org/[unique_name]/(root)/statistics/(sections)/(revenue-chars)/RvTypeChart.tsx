@@ -67,7 +67,7 @@ export default function RvTypeChart({ data }: { data: RevenueByType[] }) {
   };
 
   return (
-    <div className="p-5 space-y-5 rounded-2xl border border-gray-300 shadow-md border-b-3 border-b-violet-600 flex-1">
+    <div className="p-5 space-y-5 rounded-2xl border border-gray-300  border-b-3 border-b-violet-600 flex-1">
       <Heading text="Turlar" />
       <div className="flex gap-4">
         <button
