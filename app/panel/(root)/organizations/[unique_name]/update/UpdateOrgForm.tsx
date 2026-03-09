@@ -150,7 +150,7 @@ export default function UpdatezrganisationForm({
   // }
 
   return (
-    <form className="space-y-5" onSubmit={HandleUpdateOrg}>
+    <form className="space-y-5 basic_card" onSubmit={HandleUpdateOrg}>
       {error !== "" && (
         <Alert variant="destructive">
           <ShieldAlert />

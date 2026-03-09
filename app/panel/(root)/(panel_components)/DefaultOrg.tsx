@@ -36,7 +36,7 @@ export default function DefaultOrg() {
     return (
       <>
         {org ? (
-          <div className="border border-gray-300 rounded-2xl w-full overflow-hidden">
+          <div className="border border-gray-300 rounded-2xl w-full overflow-hidden bg-white">
             <div className="w-full p-5 border-b border-gray-200 flex flex-col gap-1 items-start">
               <h3 className="text-xl font-semibold">
                 Rol:{" "}

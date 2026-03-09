@@ -157,7 +157,7 @@ export default function NewOrganizationForm() {
   }
 
   return (
-    <form className="space-y-5" onSubmit={HandleCreateOrg}>
+    <form className="space-y-5 basic_card" onSubmit={HandleCreateOrg}>
       {error !== "" && (
         <Alert variant="destructive">
           <ShieldAlert />
@@ -169,7 +169,7 @@ export default function NewOrganizationForm() {
       {/* account */}
       <div className="space-y-1 flex items-start flex-col">
         <p className="block">Egasi*</p>
-        <div className="p-1 border-gray-300 border-1 rounded-full pr-3 flex gap-2 items-center cursor-pointer">
+        <div className="p-1 border-gray-300 border rounded-full pr-3 flex gap-2 items-center cursor-pointer">
           <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden flex justify-center items-center text-gray-500">
             <Avatar className="w-full h-full">
               <AvatarImage src={currentUser.avatar} />

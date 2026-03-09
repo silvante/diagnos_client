@@ -87,5 +87,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className={`${inter.className} antialiased`}>{children}</div>;
+  return <div className={`${inter.className} antialiased bg-gray-50`}>{children}</div>;
 }
