@@ -84,7 +84,7 @@ export default function UpdateVacancyForm({ vacancy }: { vacancy: Vacancy }) {
   }
 
   return (
-    <form className="space-y-5" onSubmit={HandleUpdateOrg}>
+    <form className="space-y-5 basic_card" onSubmit={HandleUpdateOrg}>
       {error !== "" && (
         <Alert variant="destructive">
           <ShieldAlert />
@@ -96,7 +96,7 @@ export default function UpdateVacancyForm({ vacancy }: { vacancy: Vacancy }) {
       {/* account */}
       <div className="space-y-1 flex items-start flex-col">
         <p className="block">Hisob*</p>
-        <div className="p-1 border-gray-300 border-1 rounded-full pr-3 flex gap-2 items-center cursor-pointer opacity-50 z-10">
+        <div className="p-1 border-gray-300 border rounded-full pr-3 flex gap-2 items-center cursor-pointer opacity-50 z-10">
           <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden flex justify-center items-center text-gray-500">
             <Avatar className="w-full h-full">
               <AvatarImage src={vacancy.user.avatar} />

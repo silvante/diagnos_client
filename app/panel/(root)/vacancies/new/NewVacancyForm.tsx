@@ -81,7 +81,7 @@ export default function NewVacancyForm() {
   }
 
   return (
-    <form className="space-y-5" onSubmit={HandleCreateOrg}>
+    <form className="space-y-5 basic_card" onSubmit={HandleCreateOrg}>
       {error !== "" && (
         <Alert variant="destructive">
           <ShieldAlert />
