@@ -21,7 +21,6 @@ export default function VacancyDetailsPage() {
       const res_vacancy: Vacancy = res;
       setVacancy(res_vacancy);
     } catch (error) {
-      console.log(error);
       router.push(`/org/${unique_name}/workers/employment`);
     }
   }

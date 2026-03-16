@@ -14,7 +14,6 @@ import { usePathname } from "next/navigation";
 
 export default function Community() {
   const path = usePathname();
-  console.log(path);
 
   return (
     <div className="space-y-8">

@@ -48,9 +48,6 @@ export default function JobMainLayout({
       const res: any = await userService.getMyJobs();
       const theJob: Worker = res;
       const theOrg: Organization = theJob.organization;
-      console.log(res);
-      console.log(theJob);
-      console.log(theOrg);
       if (theOrg.unique_name !== String(unique_name)) {
         return router.push("/panel");
       }

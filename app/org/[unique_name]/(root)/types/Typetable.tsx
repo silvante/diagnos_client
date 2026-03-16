@@ -46,7 +46,6 @@ export default function TypeTable() {
     try {
       const type: Type = types.find((type: Type) => type.id === id);
       const res: any = await typeService.deleteType(organization.id, type.id);
-      console.log(res);
       if (res.deleted === true) {
         dispatch(deleteType(type));
       }

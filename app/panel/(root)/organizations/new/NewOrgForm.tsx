@@ -123,10 +123,7 @@ export default function NewOrganizationForm() {
         ...(logoData && { logo: logoData }),
       };
 
-      console.log(createData);
-
       const res: any = await organizationService.create(createData);
-      console.log(res);
 
       const organization: Organization = res;
       dispatch(setLoading());

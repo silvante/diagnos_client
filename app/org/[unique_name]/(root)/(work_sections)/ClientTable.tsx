@@ -75,7 +75,6 @@ export default function ClientTable() {
         organization.id,
         client.id
       );
-      console.log(res);
       if (res.deleted === true) {
         dispatch(deleteClient(client));
       }

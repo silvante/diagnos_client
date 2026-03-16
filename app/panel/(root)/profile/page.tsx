@@ -8,7 +8,6 @@ import ProfileActions from "./(profilesections)/ProfileActions";
 
 export default function ProfilePage() {
   const { currentUser } = useSelector((state: any) => state.user);
-  console.log(currentUser);
 
   return (
     <div className="w-full">

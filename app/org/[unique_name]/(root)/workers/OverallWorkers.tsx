@@ -14,8 +14,6 @@ export default function OverallWorkers({ workers }: { workers: Worker[] }) {
     }, {})
   );
 
-  console.log(grouped);
-
   return (
     <div className="border border-gray-300 p-5 border-b-4 border-b-violet-600 rounded-xl space-y-3">
       <Heading text="Umumiy" />

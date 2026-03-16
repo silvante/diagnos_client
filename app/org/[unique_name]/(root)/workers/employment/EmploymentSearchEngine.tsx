@@ -60,9 +60,6 @@ export default function EmpSearchEngine({
     GetVacancies();
   }, [origin, page]);
 
-  console.log(vacancies);
-  console.log(meta);
-
   return (
     <div className="space-y-8">
       <div className="p-5 bg-white border border-gray-300 rounded-2xl space-y-5">

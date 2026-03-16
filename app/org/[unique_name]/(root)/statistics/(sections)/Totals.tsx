@@ -7,7 +7,6 @@ export default function Totals({
 }: {
   organization: Organization;
 }) {
-  console.log(organization);
 
   return (
     <div className="space-y-5">

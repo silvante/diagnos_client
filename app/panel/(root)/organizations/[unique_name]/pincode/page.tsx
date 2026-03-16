@@ -22,13 +22,9 @@ export default function UpdateOrganizationPincode() {
       const res_organization: Organization = res;
       setOrganization(res_organization);
     } catch (error) {
-      console.log(error);
       router.push("/panel/vacancies");
     }
   }
-
-  console.log("orgs:");
-  console.log(organizations);
 
   if (!organizations) {
     useEffect(() => {

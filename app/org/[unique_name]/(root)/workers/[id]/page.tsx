@@ -25,7 +25,6 @@ export default function WorkerSettings() {
       const res_worker: Worker = res;
       setWorker(res_worker);
     } catch (error) {
-      console.log(error);
       router.push(`/org/${organization.unique_name}/workers`);
     }
   }

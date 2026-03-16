@@ -39,8 +39,6 @@ export default function VacancyList() {
     getVacancies();
   }, []);
 
-  console.log(vacancies);
-
   if (loading) {
     return (
       <div className="w-full h-80 flex justify-center items-center">

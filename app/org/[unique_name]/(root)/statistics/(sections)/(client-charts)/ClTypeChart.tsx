@@ -33,7 +33,6 @@ import Heading from "@/app/(global_components)/Heading";
 
 export default function ClTypeChart({ data }: { data: ClientsByType[] }) {
   const [chartType, setChartType] = useState("pie");
-  console.log(data);
 
   const labels = data.map((rbd) => rbd.type_name);
   const revenues = data.map((rbd) => rbd.total);

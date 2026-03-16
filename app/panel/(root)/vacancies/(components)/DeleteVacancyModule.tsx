@@ -32,7 +32,6 @@ export default function DeleteVacancyModule({ vacancy, children }: Props) {
     setIsLoading(true);
     try {
       const res: any = await vacancyService.delete(vacancy.id);
-      console.log(res);
       if (res.deleted === true) {
         dispatch(deleteVacancy(vacancy));
       }

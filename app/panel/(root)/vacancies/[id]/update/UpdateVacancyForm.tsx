@@ -67,7 +67,6 @@ export default function UpdateVacancyForm({ vacancy }: { vacancy: Vacancy }) {
 
       const res: any = await vacancyService.update(vacancy.id, update_data);
       const updated_vacancy: Vacancy = res;
-      console.log(updated_vacancy);
 
       dispatch(replaceVacancy(updated_vacancy));
       router.push("/panel/vacancies");

@@ -58,7 +58,6 @@ export default function OrganizationList() {
     setIsLoading(true);
     try {
       const res: any = await organizationService.setAsDefault(unique_name);
-      console.log(res);
       if (res && res.success == true) {
         setError("");
         setSuccess("Tashkilot standart qilib belgilandi!");

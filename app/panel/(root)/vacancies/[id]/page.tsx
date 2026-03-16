@@ -24,12 +24,9 @@ export default function VacancyDetailsPage() {
       const res_vacancy: Vacancy = res;
       setVacancy(res_vacancy);
     } catch (error) {
-      console.log(error);
       router.push("/panel/vacancies");
     }
   }
-
-  console.log(vacancies);
 
   if (vacancies !== null) {
     useEffect(() => {
@@ -42,8 +39,6 @@ export default function VacancyDetailsPage() {
       GetVacancy(Number(id));
     }, []);
   }
-
-  console.log(vacancy);
 
   if (!vacancy) {
     return (

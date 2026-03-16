@@ -38,7 +38,6 @@ export default function DeleteWorkerDialog({ worker, children }: Props) {
     setIsLoading(true);
     try {
       const res: any = await workerService.delete(organization.id, worker.id);
-      console.log(res);
       if (res.deleted === true) {
         dispatch(deleteWorker(worker));
       }

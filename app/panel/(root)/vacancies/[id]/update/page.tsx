@@ -22,7 +22,6 @@ export default function UpdateVacancyPage() {
       const res_vacancy: Vacancy = res;
       setVacancy(res_vacancy);
     } catch (error) {
-      console.log(error);
       router.push("/panel/vacancies");
     }
   }
