@@ -3,6 +3,7 @@ import "./globals.css";
 import { StoreProvider } from "./store/StoreProvider";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
+import { Toaster } from "react-hot-toast";
 // import { cookies } from "next/headers";
 
 // // langs
@@ -19,7 +20,8 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Diagnos Uz | O'zbekistondagi Tashkilot Boshqaruvi",
-  description: "O'zbekistondagi bizneslar uchun qulay tashkilot va ish boshqaruvi platformasi",
+  description:
+    "O'zbekistondagi bizneslar uchun qulay tashkilot va ish boshqaruvi platformasi",
   keywords: [
     "diagnos",
     "Diagnos",
@@ -60,7 +62,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Diagnos Uz | O'zbekistondagi Tashkilot Boshqaruvi",
-    description: "O'zbekistondagi bizneslar uchun qulay tashkilot va ish boshqaruvi platformasi",
+    description:
+      "O'zbekistondagi bizneslar uchun qulay tashkilot va ish boshqaruvi platformasi",
     type: "website",
     url: "https://diagnos.uz",
     images: [
@@ -75,7 +78,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Diagnos Uz | O'zbekistondagi Tashkilot Boshqaruvi",
-    description: "O'zbekistondagi bizneslar uchun qulay tashkilot va ish boshqaruvi platformasi",
+    description:
+      "O'zbekistondagi bizneslar uchun qulay tashkilot va ish boshqaruvi platformasi",
     images: ["https://diagnos.uz/icons/profile.svg"],
   },
   robots: {
@@ -114,8 +118,9 @@ export default async function RootLayout({
       <body className={`${inter.className} antialiased`}>
         <NextTopLoader color="#7f22fe" showSpinner={false} />
         {/* <LangProvider lang={lang} messages={messages}> */}
-          <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>{children}</StoreProvider>
         {/* </LangProvider> */}
+        <Toaster position="top-center" reverseOrder={false} />
       </body>
     </html>
   );

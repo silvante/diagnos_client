@@ -31,6 +31,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import Link from "next/link";
 import CheckClientForm from "./(meta-components)/CheckClientForm";
 import { isEven } from "@/app/global/data";
+import toast from "react-hot-toast";
 
 export default function ClientTable() {
   const [ref, setRef] = useState(false);
@@ -56,6 +57,7 @@ export default function ClientTable() {
         const types: Type[] = response.types;
         dispatch(updateClients(clients));
         dispatch(updateTypes(types));
+        toast.success("Mijozlar olindi")
       }
     } catch (error) {
       console.error("Error fetching organizations:", error);
