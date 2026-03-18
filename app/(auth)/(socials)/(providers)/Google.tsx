@@ -8,7 +8,7 @@ export default function Google({ setErrorMessage }: any) {
   const handleGoogleLogin = () => {
     try {
       setLoading(true);
-      window.location.href = "https://localhost:8080/auth/google";
+      window.location.href = "http://localhost:8080/auth/google";
     } catch (error) {
       setErrorMessage("Nimadir xato ketdi, iltimos keyinroq qayta urinib ko'ring");
     }
