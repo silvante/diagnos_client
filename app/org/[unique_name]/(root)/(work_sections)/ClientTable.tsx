@@ -89,6 +89,8 @@ export default function ClientTable() {
     }
   }
 
+  // realtime: Handling Events
+
   if (loading || is_loading) {
     return (
       <div className="w-full h-80 flex justify-center items-center">
