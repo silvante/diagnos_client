@@ -9,7 +9,7 @@ import {
 } from "@/app/store/slices/clientSlice";
 import { updateTypes } from "@/app/store/slices/typesSlice";
 import { Client, Type } from "@/app/types/User";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -32,6 +32,7 @@ import Link from "next/link";
 import CheckClientForm from "./(meta-components)/CheckClientForm";
 import { isEven } from "@/app/global/data";
 import toast from "react-hot-toast";
+import { socket } from "@/lib/socket";
 
 export default function ClientTable() {
   const [ref, setRef] = useState(false);
@@ -51,13 +52,12 @@ export default function ClientTable() {
       } else {
         dispatch(setLoading());
         const response: any = await clientService.getTodaysClients(
-          organization.id
+          organization.id,
         );
         const clients: Client[] = response.clients;
         const types: Type[] = response.types;
         dispatch(updateClients(clients));
         dispatch(updateTypes(types));
-        toast.success("Mijozlar olindi")
       }
     } catch (error) {
       console.error("Error fetching organizations:", error);
@@ -75,7 +75,7 @@ export default function ClientTable() {
       const client: Client = clients.find((client: Client) => client.id === id);
       const res: any = await clientService.deleteClient(
         organization.id,
-        client.id
+        client.id,
       );
       if (res.deleted === true) {
         dispatch(deleteClient(client));
@@ -92,6 +92,96 @@ export default function ClientTable() {
   }
 
   // realtime: Handling Events
+
+  // Should be implemented into separate hook
+  // <%= sapce_tag ---------------------------------------------------------------------- %>
+
+  const hasJoined = useRef(false);
+
+  useEffect(() => {
+    if (!organization?.id) {
+      console.log("No organization.id yet → skipping socket join for now");
+      return;
+    }
+
+    const orgId = String(organization.id); // ← force string, matches server expectation
+    console.log("Using orgId for join:", orgId);
+
+    // Connect if needed
+    if (!socket.connected) {
+      socket.connect();
+    }
+
+    const onConnect = () => {
+      console.log("Socket connected → ID:", socket.id);
+
+      if (!hasJoined.current) {
+        console.log(
+          `Emitting join-org with: "${orgId}" (type: ${typeof orgId})`,
+        );
+        socket.emit("join-org", orgId);
+        hasJoined.current = true;
+      }
+    };
+
+    const onConnectError = (err: any) => {
+      console.error("Socket connect error:", err.message);
+    };
+
+    const onJoinSuccess = (data: any) => {
+      console.log("Join SUCCESS:", data);
+    };
+
+    const onJoinError = (msg: any) => {
+      console.error("Join ERROR from server:", msg);
+    };
+
+    // events (functions)
+
+    const onNewClient = (client: any) => {
+      console.log("→ New client via socket:", client);
+      toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
+    };
+
+    // Attach
+    socket.on("connect", onConnect);
+    socket.on("connect_error", onConnectError);
+    socket.on("join-success", onJoinSuccess);
+    socket.on("join-error", onJoinError);
+
+    // events
+    socket.on("client-created", onNewClient);
+
+    // If already connected → trigger join right now
+    if (socket.connected && !hasJoined.current) {
+      console.log(`Already connected → emitting join-org "${orgId}" now`);
+      socket.emit("join-org", orgId);
+      hasJoined.current = true;
+    }
+
+    // Handle reconnects (very important)
+    const onReconnect = () => {
+      console.log("Socket reconnected → re-joining");
+      hasJoined.current = false;
+      socket.emit("join-org", orgId);
+      hasJoined.current = true;
+    };
+
+    socket.io.on("reconnect", onReconnect);
+
+    // Cleanup
+    return () => {
+      socket.off("connect", onConnect);
+      socket.off("connect_error", onConnectError);
+      socket.off("join-success", onJoinSuccess);
+      socket.off("join-error", onJoinError);
+      socket.off("client-created", onNewClient);
+      socket.io.off("reconnect", onReconnect);
+      hasJoined.current = false;
+    };
+  }, [organization?.id]); // Re-run if org id changes
+
+  // <%= sapce_tag ---------------------------------------------------------------------- %>
 
   if (loading || is_loading) {
     return (
@@ -222,7 +312,9 @@ export default function ClientTable() {
                                       >
                                         <DropdownMenuItem className="cursor-pointer">
                                           <Trash color="#e7000b" />{" "}
-                                          <p className="text-red-600">O'chirish</p>
+                                          <p className="text-red-600">
+                                            O'chirish
+                                          </p>
                                         </DropdownMenuItem>
                                       </button>
                                     </DropdownMenuContent>
@@ -269,7 +361,8 @@ export default function ClientTable() {
                           </tr>
                         )}
 
-                        {!client.is_checked && currentJob?.role !== "receptionist" && (
+                        {!client.is_checked &&
+                          currentJob?.role !== "receptionist" && (
                             <tr
                               className={`border-gray-200 ${
                                 !isEven(index + 1) ? "bg-white" : "bg-gray-50"
