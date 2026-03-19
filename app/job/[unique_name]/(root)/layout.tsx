@@ -15,6 +15,7 @@ import { HashLoader } from "react-spinners";
 import JobsHeader from "../../(components)/JobsHeader";
 import JobBreadcrumbs from "../../(components)/JobBreadcrumbs";
 import OrgFooter from "@/app/org/(components)/OrgFooter";
+import PanelAuthDirector from "@/app/panel/(root)/PanelAuthDirector";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -79,6 +80,7 @@ export default function JobMainLayout({
     return (
       <div className="w-full h-screen flex items-center justify-center">
         <HashLoader color="#7c3aed" size={58} />
+        <PanelAuthDirector />
       </div>
     );
   } else if (organization && validation) {

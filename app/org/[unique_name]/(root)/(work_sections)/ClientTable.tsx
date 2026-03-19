@@ -4,6 +4,7 @@ import Spinner from "@/app/(global_components)/Spinner";
 import clientService from "@/app/api/services/clientService";
 import {
   deleteClient,
+  pushClient,
   setLoading,
   updateClients,
 } from "@/app/store/slices/clientSlice";
@@ -44,6 +45,9 @@ export default function ClientTable() {
   const { organization } = useSelector((state: any) => state.validator);
   const dispatch = useDispatch();
   const [showDiagnosId, setShowDiagnosId] = useState(0);
+  const {currentUser} = useSelector((state: any) => state.user)
+
+  console.log(currentUser);
 
   async function GetClients() {
     try {
@@ -138,9 +142,16 @@ export default function ClientTable() {
 
     // events (functions)
 
-    const onNewClient = (client: any) => {
+    const onNewClient = (event_data: any) => {
+      const client = event_data.client;
+      const event_owner = event_data.event_owner;
+      
+      // if (event_owner === ) {
+        
+      // }
       console.log("→ New client via socket:", client);
       toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
+      const new_client: Client = client;
     };
 
     // Attach
