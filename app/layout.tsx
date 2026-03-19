@@ -4,6 +4,7 @@ import { StoreProvider } from "./store/StoreProvider";
 import { Inter } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
+import SFX from "./providers/sfx";
 // import { cookies } from "next/headers";
 
 // // langs
@@ -121,6 +122,7 @@ export default async function RootLayout({
         <StoreProvider>{children}</StoreProvider>
         {/* </LangProvider> */}
         <Toaster position="top-center" reverseOrder={false} />
+        <SFX />
       </body>
     </html>
   );
