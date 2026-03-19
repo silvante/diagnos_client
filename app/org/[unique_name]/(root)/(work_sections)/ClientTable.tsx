@@ -5,6 +5,7 @@ import clientService from "@/app/api/services/clientService";
 import {
   deleteClient,
   pushClient,
+  replaceClient,
   setLoading,
   updateClients,
 } from "@/app/store/slices/clientSlice";
@@ -45,7 +46,7 @@ export default function ClientTable() {
   const { organization } = useSelector((state: any) => state.validator);
   const dispatch = useDispatch();
   const [showDiagnosId, setShowDiagnosId] = useState(0);
-  const {currentUser} = useSelector((state: any) => state.user)
+  const { currentUser } = useSelector((state: any) => state.user);
 
   async function GetClients() {
     try {
@@ -143,12 +144,38 @@ export default function ClientTable() {
     const onNewClient = (event_data: any) => {
       const client = event_data.client;
       const event_owner = event_data.event_owner;
-      
+
       if (event_owner !== currentUser.id) {
         toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
-        const new_client: Client = client
-        dispatch(setLoading())
-        dispatch(pushClient(new_client))
+        const new_client: Client = client;
+        dispatch(setLoading());
+        dispatch(pushClient(new_client));
+      }
+    };
+
+    const onClientDelete = (event_data: any) => {
+      const client = event_data.client;
+      const event_owner = event_data.event_owner;
+
+      if (event_owner !== currentUser.id) {
+        toast.error(
+          `Mijoz ochirildi: ${client.name} ${client.surname || ""}`,
+        );
+        const new_client: Client = client;
+        dispatch(deleteClient(new_client));
+      }
+    };
+
+    const onClientUpdate = (event_data: any) => {
+      const client = event_data.client;
+      const event_owner = event_data.event_owner;
+
+      if (event_owner !== currentUser.id) {
+        toast(
+          `Mijoz yangilandi: ${client.name} ${client.surname || ""}`, {icon: "📝"}
+        );
+        const new_client: Client = client;
+        dispatch(replaceClient(new_client));
       }
     };
 
@@ -160,6 +187,8 @@ export default function ClientTable() {
 
     // events
     socket.on("client-created", onNewClient);
+    socket.on("client-deleted", onClientDelete);
+    socket.on("client-updated", onClientUpdate)
 
     // If already connected → trigger join right now
     if (socket.connected && !hasJoined.current) {
