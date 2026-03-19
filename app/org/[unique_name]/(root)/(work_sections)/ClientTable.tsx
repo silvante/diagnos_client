@@ -47,8 +47,6 @@ export default function ClientTable() {
   const [showDiagnosId, setShowDiagnosId] = useState(0);
   const {currentUser} = useSelector((state: any) => state.user)
 
-  console.log(currentUser);
-
   async function GetClients() {
     try {
       if (!ref && types && clients) {
@@ -146,12 +144,12 @@ export default function ClientTable() {
       const client = event_data.client;
       const event_owner = event_data.event_owner;
       
-      // if (event_owner === ) {
-        
-      // }
-      console.log("→ New client via socket:", client);
-      toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
-      const new_client: Client = client;
+      if (event_owner !== currentUser.id) {
+        toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
+        const new_client: Client = client
+        dispatch(setLoading())
+        dispatch(pushClient(new_client))
+      }
     };
 
     // Attach
