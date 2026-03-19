@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Image from "next/image";
 import Diagnos from "../(global_components)/Diagnos";
-import { Toaster } from "react-hot-toast";
 import SignUp from "@/public/backgraund/signup_bg.jpg";
 
 const inter = Inter({
@@ -95,7 +94,6 @@ export default function RootLayout({
     <div
       className={`${inter.variable} antialiased flex items-center h-screen`}
     >
-      <Toaster position="top-right" reverseOrder={true} />
       <div className="bg-gray-200 max-w-lg w-full h-screen relative hidden lg:block">
         <Image
           src={SignUp}

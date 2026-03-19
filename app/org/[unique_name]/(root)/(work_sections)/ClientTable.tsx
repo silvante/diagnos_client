@@ -35,6 +35,7 @@ import CheckClientForm from "./(meta-components)/CheckClientForm";
 import { isEven } from "@/app/global/data";
 import toast from "react-hot-toast";
 import { socket } from "@/lib/socket";
+import { NegativeNotification, PositiveNotification } from "@/lib/sfx";
 
 export default function ClientTable() {
   const [ref, setRef] = useState(false);
@@ -148,6 +149,9 @@ export default function ClientTable() {
       if (event_owner !== currentUser.id) {
         toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
         const new_client: Client = client;
+
+        PositiveNotification()
+
         dispatch(setLoading());
         dispatch(pushClient(new_client));
       }
@@ -161,6 +165,9 @@ export default function ClientTable() {
         toast.error(
           `Mijoz ochirildi: ${client.name} ${client.surname || ""}`,
         );
+
+        NegativeNotification()
+
         const new_client: Client = client;
         dispatch(deleteClient(new_client));
       }
@@ -174,6 +181,9 @@ export default function ClientTable() {
         toast(
           `Mijoz yangilandi: ${client.name} ${client.surname || ""}`, {icon: "📝"}
         );
+
+        PositiveNotification()
+
         const new_client: Client = client;
         dispatch(replaceClient(new_client));
       }
