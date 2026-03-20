@@ -150,7 +150,7 @@ export default function ClientTable() {
         toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
         const new_client: Client = client;
 
-        PositiveNotification()
+        PositiveNotification();
 
         dispatch(setLoading());
         dispatch(pushClient(new_client));
@@ -162,11 +162,9 @@ export default function ClientTable() {
       const event_owner = event_data.event_owner;
 
       if (event_owner !== currentUser.id) {
-        toast.error(
-          `Mijoz ochirildi: ${client.name} ${client.surname || ""}`,
-        );
+        toast.error(`Mijoz ochirildi: ${client.name} ${client.surname || ""}`);
 
-        NegativeNotification()
+        NegativeNotification();
 
         const new_client: Client = client;
         dispatch(deleteClient(new_client));
@@ -178,11 +176,11 @@ export default function ClientTable() {
       const event_owner = event_data.event_owner;
 
       if (event_owner !== currentUser.id) {
-        toast(
-          `Mijoz yangilandi: ${client.name} ${client.surname || ""}`, {icon: "📝"}
-        );
+        toast(`Mijoz yangilandi: ${client.name} ${client.surname || ""}`, {
+          icon: "📝",
+        });
 
-        PositiveNotification()
+        PositiveNotification();
 
         const new_client: Client = client;
         dispatch(replaceClient(new_client));
@@ -198,7 +196,7 @@ export default function ClientTable() {
     // events
     socket.on("client-created", onNewClient);
     socket.on("client-deleted", onClientDelete);
-    socket.on("client-updated", onClientUpdate)
+    socket.on("client-updated", onClientUpdate);
 
     // If already connected → trigger join right now
     if (socket.connected && !hasJoined.current) {
@@ -223,7 +221,10 @@ export default function ClientTable() {
       socket.off("connect_error", onConnectError);
       socket.off("join-success", onJoinSuccess);
       socket.off("join-error", onJoinError);
+      // client events
       socket.off("client-created", onNewClient);
+      socket.off("client-deleted", onClientDelete);
+      socket.off("client-updated", onClientUpdate);
       socket.io.off("reconnect", onReconnect);
       hasJoined.current = false;
     };
