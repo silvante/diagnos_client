@@ -162,7 +162,7 @@ export default function ClientTable() {
       const event_owner = event_data.event_owner;
 
       if (event_owner !== currentUser.id) {
-        toast.error(`Mijoz ochirildi: ${client.name} ${client.surname || ""}`);
+        toast.error(`Mijoz o'chirildi: ${client.name} ${client.surname || ""}`);
 
         NegativeNotification();
 
