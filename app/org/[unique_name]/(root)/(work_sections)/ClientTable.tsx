@@ -298,7 +298,7 @@ export default function ClientTable() {
                     .map((client: Client, index: number) => (
                       <React.Fragment key={client.id}>
                         <tr
-                          className={`border-gray-200 ${
+                          className={`special_animation border-gray-200 ${
                             !isEven(index + 1) ? "bg-white" : "bg-gray-50"
                           } ${client.is_checked && "border-b border-gray-300"}`}
                         >
@@ -397,7 +397,7 @@ export default function ClientTable() {
 
                         {client.id === showDiagnosId && client.is_checked && (
                           <tr
-                            className={`border-gray-200 ${
+                            className={`special_animation border-gray-200 ${
                               !isEven(index + 1) ? "bg-white" : "bg-gray-50"
                             } border-b border-gray-300`}
                           >
@@ -413,7 +413,7 @@ export default function ClientTable() {
                         {!client.is_checked &&
                           currentJob?.role !== "receptionist" && (
                             <tr
-                              className={`border-gray-200 ${
+                              className={`special_animation border-gray-200 ${
                                 !isEven(index + 1) ? "bg-white" : "bg-gray-50"
                               } border-b border-gray-300`}
                             >
