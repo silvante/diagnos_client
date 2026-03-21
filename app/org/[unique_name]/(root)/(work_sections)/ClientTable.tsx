@@ -10,7 +10,7 @@ import {
   updateClients,
 } from "@/app/store/slices/clientSlice";
 import { updateTypes } from "@/app/store/slices/typesSlice";
-import { Client, Type } from "@/app/types/User";
+import { Client, Type, WorkerAttachedTypes } from "@/app/types/User";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -143,47 +143,62 @@ export default function ClientTable() {
     // events (functions)
 
     const onNewClient = (event_data: any) => {
-      const client = event_data.client;
+      const client: Client = event_data.client;
       const event_owner = event_data.event_owner;
+
+      if (currentJob && currentJob.role === "doctor") {
+        const type_ids: Number[] = currentJob.attached_types.map((at: WorkerAttachedTypes) => at.type_id)
+        if (!type_ids.includes(client.type_id)) {
+          return;
+        }
+      }
 
       if (event_owner !== currentUser.id) {
         toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
-        const new_client: Client = client;
-
         PositiveNotification();
 
         dispatch(setLoading());
-        dispatch(pushClient(new_client));
+        dispatch(pushClient(client));
       }
     };
 
     const onClientDelete = (event_data: any) => {
-      const client = event_data.client;
+      const client: Client = event_data.client;
       const event_owner = event_data.event_owner;
+
+      if (currentJob && currentJob.role === "doctor") {
+        const type_ids: Number[] = currentJob.attached_types.map((at: WorkerAttachedTypes) => at.type_id)
+        if (!type_ids.includes(client.type_id)) {
+          return;
+        }
+      }
 
       if (event_owner !== currentUser.id) {
         toast.error(`Mijoz o'chirildi: ${client.name} ${client.surname || ""}`);
-
         NegativeNotification();
 
-        const new_client: Client = client;
-        dispatch(deleteClient(new_client));
+        dispatch(deleteClient(client));
       }
     };
 
     const onClientUpdate = (event_data: any) => {
-      const client = event_data.client;
+      const client: Client = event_data.client;
       const event_owner = event_data.event_owner;
+
+      if (currentJob && currentJob.role === "doctor") {
+        const type_ids: Number[] = currentJob.attached_types.map((at: WorkerAttachedTypes) => at.type_id)
+        if (!type_ids.includes(client.type_id)) {
+          return;
+        }
+      }
 
       if (event_owner !== currentUser.id) {
         toast(`Mijoz yangilandi: ${client.name} ${client.surname || ""}`, {
           icon: "📝",
         });
-
         PositiveNotification();
 
-        const new_client: Client = client;
-        dispatch(replaceClient(new_client));
+        dispatch(replaceClient(client));
       }
     };
 
