@@ -1,5 +1,5 @@
 "use client";
-import { Check, ChevronsUpDown, ShieldAlert } from "lucide-react";
+import { Check, ChevronsUpDown, Delete, ShieldAlert } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -113,6 +113,7 @@ export default function ClientCreator() {
   console.log(type_id);
   console.log(selectedTypes);
 
+  // add selected type
   useEffect(() => {
     if (loading || !types) {
       return;
@@ -125,6 +126,7 @@ export default function ClientCreator() {
     let exists = selectedTypes.find((t) => t.id == +type_id);
 
     if (exists) {
+      settype_id("");
       return;
     }
 
@@ -132,11 +134,28 @@ export default function ClientCreator() {
     console.log(added_type);
 
     setSelectedTypes([...selectedTypes, added_type]);
-    // setprice(String(current_price));
+    settype_id("");
   }, [type_id]);
 
   // console.log(type_id);
   // console.log(selected_types);
+
+  // remove selected type
+
+  function RemoveSelectedType(id: number) {
+    const new_selected_types = selectedTypes.filter((st) => st.id !== id);
+    setSelectedTypes(new_selected_types);
+  }
+
+  // stabilize the form Type_IDS
+  useEffect(() => {
+    const ids = selectedTypes.map((st) => st.id);
+    const prices = selectedTypes.map((st) => st.price);
+    const sum = prices.reduce((total, num) => total + num, 0);
+
+    updateField("type_ids", ids);
+    updateField("price", sum);
+  }, [selectedTypes]);
 
   // types
   const valid_types: Type[] = types;
@@ -239,7 +258,7 @@ export default function ClientCreator() {
                 </Button>
               </PopoverTrigger>
               <PopoverContent className="p-0">
-                <Command>
+                <Command className="w-full">
                   <CommandInput
                     placeholder="Turni qidirish..."
                     className="h-9"
@@ -285,6 +304,24 @@ export default function ClientCreator() {
                 </Command>
               </PopoverContent>
             </Popover>
+            {selectedTypes && selectedTypes.length > 0 && (
+              <div className="global_input">
+                {selectedTypes.map((st) => (
+                  <div
+                    key={st.id}
+                    className="py-2 border-b last:border-none border-slate-400 flex items-center justify-between"
+                  >
+                    <p>{st.name}</p>
+                    <button
+                      className="text-red-400 cursor-pointer"
+                      onClick={() => RemoveSelectedType(st.id)}
+                    >
+                      <Delete />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           <div className="flex flex-col space-y-1">
             <label htmlFor="price">Narxi</label>
