@@ -131,7 +131,7 @@ export default function TypeTable() {
                         {type.price} uzs
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        {type._count.clients} mijozlar
+                        {type._count.diagnoses} mijozlar
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <DropdownMenu>

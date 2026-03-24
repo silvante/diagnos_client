@@ -50,7 +50,7 @@ export interface Type {
   description: string;
   price: number;
   _count: {
-    diagnosis: number;
+    diagnoses: number;
     attached_workers: number;
   };
   created_at: Date;
