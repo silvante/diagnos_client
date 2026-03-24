@@ -120,9 +120,10 @@ export default function ClientTable() {
       // console.log("Socket connected → ID:", socket.id);
 
       if (!hasJoined.current) {
-        console.log(
+        console
+          .log
           // `Emitting join-org with: "${orgId}" (type: ${typeof orgId})`,
-        );
+          ();
         socket.emit("join-org", orgId);
         hasJoined.current = true;
       }
@@ -147,7 +148,9 @@ export default function ClientTable() {
       const event_owner = event_data.event_owner;
 
       if (currentJob && currentJob.role === "doctor") {
-        const type_ids: Number[] = currentJob.attached_types.map((at: WorkerAttachedTypes) => at.type_id)
+        const type_ids: Number[] = currentJob.attached_types.map(
+          (at: WorkerAttachedTypes) => at.type_id,
+        );
         if (!type_ids.includes(client.type_id)) {
           return;
         }
@@ -167,7 +170,9 @@ export default function ClientTable() {
       const event_owner = event_data.event_owner;
 
       if (currentJob && currentJob.role === "doctor") {
-        const type_ids: Number[] = currentJob.attached_types.map((at: WorkerAttachedTypes) => at.type_id)
+        const type_ids: Number[] = currentJob.attached_types.map(
+          (at: WorkerAttachedTypes) => at.type_id,
+        );
         if (!type_ids.includes(client.type_id)) {
           return;
         }
@@ -186,7 +191,9 @@ export default function ClientTable() {
       const event_owner = event_data.event_owner;
 
       if (currentJob && currentJob.role === "doctor") {
-        const type_ids: Number[] = currentJob.attached_types.map((at: WorkerAttachedTypes) => at.type_id)
+        const type_ids: Number[] = currentJob.attached_types.map(
+          (at: WorkerAttachedTypes) => at.type_id,
+        );
         if (!type_ids.includes(client.type_id)) {
           return;
         }
@@ -333,7 +340,14 @@ export default function ClientTable() {
                             {client.origin}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
-                            {client.type.name}
+                            {client.diagnoses.map((d) => (
+                              <p
+                                key={d.id}
+                                className={`${d.is_checked ? "text-green-500" : "text-yellow-500"}`}
+                              >
+                                {d.type.name}
+                              </p>
+                            ))}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap">
                             {client.price} uzs
@@ -416,11 +430,29 @@ export default function ClientTable() {
                               !isEven(index + 1) ? "bg-white" : "bg-gray-50"
                             } border-b border-gray-300`}
                           >
-                            <td colSpan={7} className="text_color px-6 py-3">
-                              <span className="font-semibold">
-                                {client.name} {client.surname}:{" "}
-                              </span>
-                              {client.diagnosis}
+                            <td
+                              colSpan={7}
+                              className="text_color px-3 pb-3 space-y-2"
+                            >
+                              {client.diagnoses.map((d) => (
+                                <div
+                                  key={d.id}
+                                  className="px-4 py-2 rounded-lg border border-gray-300"
+                                >
+                                  <p>
+                                    <span className="font-semibold">
+                                      {d.type.name}:{" "}
+                                    </span>
+                                    {d.report}
+                                  </p>
+                                  <p>
+                                    <span className="font-semibold">
+                                      Tekshirdi:{" "}
+                                    </span>
+                                    {d.reporter_name}
+                                  </p>
+                                </div>
+                              ))}
                             </td>
                           </tr>
                         )}
@@ -432,11 +464,15 @@ export default function ClientTable() {
                                 !isEven(index + 1) ? "bg-white" : "bg-gray-50"
                               } border-b border-gray-300`}
                             >
-                              <td colSpan={7} className="px-6 py-3">
-                                <CheckClientForm
-                                  client={client}
-                                  organization={organization}
-                                />
+                              <td colSpan={7} className="px-3 py-3 space-y-3">
+                                {client.diagnoses.map((d) => (
+                                  <CheckClientForm
+                                    key={d.id}
+                                    client={client}
+                                    organization={organization}
+                                    diagnosis={d}
+                                  />
+                                ))}
                               </td>
                             </tr>
                           )}

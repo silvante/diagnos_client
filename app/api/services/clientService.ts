@@ -19,11 +19,19 @@ const clientService = {
     }
   },
 
-  checkClient: async (org_id: number, client_id: number, diagnosis: string) => {
+  checkClient: async (
+    org_id: number,
+    client_id: number,
+    diagnosis_id: number,
+    report: string,
+  ) => {
     try {
-      return await api.put(apiEndpoints.checkClient(org_id, client_id), {
-        diagnosis,
-      });
+      return await api.put(
+        apiEndpoints.checkClient(org_id, client_id, diagnosis_id),
+        {
+          report,
+        },
+      );
     } catch (error) {
       throw error;
     }
@@ -32,7 +40,7 @@ const clientService = {
   updateClient: async (
     org_id: number,
     client_id: number,
-    data: UpdateClientType
+    data: UpdateClientType,
   ) => {
     try {
       return await api.put(apiEndpoints.updateClient(org_id, client_id), data);
@@ -56,7 +64,7 @@ const clientService = {
     name: string = "",
     surname: string = "",
     born_in?: number,
-    type_id?: number
+    type_id?: number,
   ) => {
     try {
       return await api.get(
@@ -67,8 +75,8 @@ const clientService = {
           name,
           surname,
           born_in,
-          type_id
-        )
+          type_id,
+        ),
       );
     } catch (error) {
       throw error;
@@ -79,11 +87,11 @@ const clientService = {
     org_id: number,
     date: string,
     page: number = 1,
-    limit: number = 10
+    limit: number = 10,
   ) => {
     try {
       return await api.get(
-        apiEndpoints.getClientsByDate(org_id, date, page, limit)
+        apiEndpoints.getClientsByDate(org_id, date, page, limit),
       );
     } catch (error) {
       throw error;
