@@ -24,7 +24,7 @@ export default function OrgLayout({
   children: React.ReactNode;
 }>) {
   const { loading, organization, validation } = useSelector(
-    (state: any) => state.validator
+    (state: any) => state.validator,
   );
   const { unique_name }: { unique_name: string } = useParams();
   const router = useRouter();
@@ -45,7 +45,7 @@ export default function OrgLayout({
           <OrgHeader />
           <main className="w-full flex min-h-screen">
             <OrgAside />
-            <div className="flex-1 pt-20 px-3 md:px-5 max-w-[1480px] w-full mx-auto pb-14 xl:pb-5 flex flex-col">
+            <div className="flex-1 pt-20 px-3 md:px-5 max-w-370 w-full mx-auto pb-14 xl:pb-5 flex flex-col">
               <div className="w-full flex items-center justify-start mb-5">
                 <OrgBreadcrumbs />
               </div>

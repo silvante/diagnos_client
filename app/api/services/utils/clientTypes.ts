@@ -4,7 +4,7 @@ export type CreateClientType = {
   born_in: number;
   origin: string;
   price: number;
-  type_id: number;
+  type_ids: [number];
 };
 
 export type UpdateClientType = {
@@ -13,5 +13,5 @@ export type UpdateClientType = {
   born_in: number;
   origin: string;
   price: number;
-  type_id: number;
+  type_ids: [number];
 };

@@ -40,6 +40,7 @@ export default function ClientCreator() {
   const [born_in, setborn_in] = useState("");
   const [origin, setorigin] = useState("");
   const [type_id, settype_id] = useState("");
+  const [type_ids, settype_ids] = useState<number[]>([]);
   const [price, setprice] = useState("");
 
   // for clear form
@@ -50,6 +51,7 @@ export default function ClientCreator() {
     setborn_in("");
     setorigin("");
     settype_id("");
+    settype_ids([]);
     setprice("");
   }
 
@@ -79,11 +81,13 @@ export default function ClientCreator() {
         price: Number(price),
       };
       if (formData.type_id === 0) {
-        return setError("Tur tanlashingiz kerak, agar mavjud bo'lmasa, yangisini yarating");
+        return setError(
+          "Tur tanlashingiz kerak, agar mavjud bo'lmasa, yangisini yarating",
+        );
       }
       const res: any = await clientService.createClient(
         organization.id,
-        formData
+        formData,
       );
       const new_client: Client = res;
       dispatch(pushClient(new_client));
@@ -92,7 +96,9 @@ export default function ClientCreator() {
       setError("");
     } catch (error: any) {
       if (!error.response) {
-        setError("Barcha maydonlarni to'g'ri to'ldirganingizga ishonch hosil qiling");
+        setError(
+          "Barcha maydonlarni to'g'ri to'ldirganingizga ishonch hosil qiling",
+        );
       } else {
         setError(error.response.data.message);
       }
@@ -100,8 +106,26 @@ export default function ClientCreator() {
     }
   }
 
-  // types
   const { types, loading } = useSelector((state: any) => state.types);
+  console.log(types);
+
+  useEffect(() => {
+    if (loading || !types) {
+      return;
+    }
+    settype_ids([...type_ids, +type_id]);
+
+    let added_type = types.find((t: Type) => t.id == +type_id);
+    if (!added_type) return;
+    setprice(String(price + added_type.price));
+
+    settype_id("");
+  }, [type_id]);
+
+  console.log(type_id);
+  console.log(type_ids);
+
+  // types
   const valid_types: Type[] = types;
   if (loading) {
     return (
@@ -203,7 +227,10 @@ export default function ClientCreator() {
               </PopoverTrigger>
               <PopoverContent className="p-0">
                 <Command>
-                  <CommandInput placeholder="Turni qidirish..." className="h-9" />
+                  <CommandInput
+                    placeholder="Turni qidirish..."
+                    className="h-9"
+                  />
                   <CommandList>
                     <CommandEmpty>Turlar topilmadi.</CommandEmpty>
                     <CommandGroup>
@@ -217,9 +244,9 @@ export default function ClientCreator() {
                             setprice(
                               String(
                                 valid_types.find(
-                                  (type) => String(type.id) === id
-                                )?.price
-                              )
+                                  (type) => String(type.id) === id,
+                                )?.price,
+                              ),
                             );
                             setOpen(false);
                           }}
@@ -230,7 +257,7 @@ export default function ClientCreator() {
                               "ml-auto",
                               type_id === String(vt.id)
                                 ? "opacity-100"
-                                : "opacity-0"
+                                : "opacity-0",
                             )}
                           />
                         </CommandItem>
