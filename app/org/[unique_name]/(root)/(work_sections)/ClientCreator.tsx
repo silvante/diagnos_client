@@ -22,6 +22,7 @@ import { useEffect, useState } from "react";
 import { pushClient, setLoading } from "@/app/store/slices/clientSlice";
 import clientService from "@/app/api/services/clientService";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { useClearShortcut } from "@/hooks/shortcuts/useClearShortcut";
 
 export default function ClientCreator() {
   const [open, setOpen] = useState(false);
@@ -34,53 +35,54 @@ export default function ClientCreator() {
   // selectors
   const { organization } = useSelector((state: any) => state.validator);
 
-  // for formData
-  const [name, setname] = useState("");
-  const [surname, setsurname] = useState("");
-  const [born_in, setborn_in] = useState("");
-  const [origin, setorigin] = useState("");
   const [type_id, settype_id] = useState("");
-  const [type_ids, settype_ids] = useState<number[]>([]);
-  const [price, setprice] = useState("");
+  const [selectedTypes, setSelectedTypes] = useState<any[]>([]);
 
-  // for clear form
+  // for formData
+  const [form, setForm] = useState({
+    name: "",
+    surname: "",
+    born_in: "",
+    origin: "",
+    type_ids: [0] as [number],
+    price: "",
+  });
 
-  function ClearFields() {
-    setname("");
-    setsurname("");
-    setborn_in("");
-    setorigin("");
-    settype_id("");
-    settype_ids([]);
-    setprice("");
+  // Universal data handler
+  function updateField(field: string, value: any) {
+    setForm((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
   }
 
-  useEffect(() => {
-    const handleLockEvent = (e: KeyboardEvent) => {
-      if (e.ctrlKey && e.key == "Delete") {
-        ClearFields();
-      }
-    };
-
-    window.addEventListener("keydown", handleLockEvent);
-    return () => window.removeEventListener("keydown", handleLockEvent);
-  }, []);
+  // for clear form
+  function ClearFields() {
+    setForm({
+      name: "",
+      surname: "",
+      born_in: "",
+      origin: "",
+      type_ids: [0] as [number],
+      price: "",
+    });
+  }
+  useClearShortcut(ClearFields);
 
   // submit form
-
   async function HandleCreateClient(e: any) {
     e.preventDefault();
     setIsLoading(true);
     try {
       const formData = {
-        name,
-        surname,
-        born_in: Number(born_in),
-        origin,
-        type_id: Number(type_id),
-        price: Number(price),
+        name: form.name,
+        surname: form.surname,
+        born_in: Number(form.born_in),
+        origin: form.origin,
+        type_ids: form.type_ids,
+        price: Number(form.price),
       };
-      if (formData.type_id === 0) {
+      if (formData.type_ids.length <= 0) {
         return setError(
           "Tur tanlashingiz kerak, agar mavjud bo'lmasa, yangisini yarating",
         );
@@ -107,23 +109,34 @@ export default function ClientCreator() {
   }
 
   const { types, loading } = useSelector((state: any) => state.types);
-  console.log(types);
+  console.log(form);
+  console.log(type_id);
+  console.log(selectedTypes);
 
   useEffect(() => {
     if (loading || !types) {
       return;
     }
-    settype_ids([...type_ids, +type_id]);
+
+    if (type_id === "") {
+      return;
+    }
+
+    let exists = selectedTypes.find((t) => t.id == +type_id);
+
+    if (exists) {
+      return;
+    }
 
     let added_type = types.find((t: Type) => t.id == +type_id);
-    if (!added_type) return;
-    setprice(String(price + added_type.price));
+    console.log(added_type);
 
-    settype_id("");
+    setSelectedTypes([...selectedTypes, added_type]);
+    // setprice(String(current_price));
   }, [type_id]);
 
-  console.log(type_id);
-  console.log(type_ids);
+  // console.log(type_id);
+  // console.log(selected_types);
 
   // types
   const valid_types: Type[] = types;
@@ -160,8 +173,8 @@ export default function ClientCreator() {
               id="name"
               placeholder="Mijoz ismi"
               className="global_input"
-              value={name}
-              onChange={(e) => setname(e.target.value)}
+              value={form.name}
+              onChange={(e) => updateField("name", e.target.value)}
               required
               autoFocus
             />
@@ -174,8 +187,8 @@ export default function ClientCreator() {
               id="surname"
               placeholder="Mijoz familiyasi"
               className="global_input"
-              value={surname}
-              onChange={(e) => setsurname(e.target.value)}
+              value={form.surname}
+              onChange={(e) => updateField("surname", e.target.value)}
               required
             />
           </div>
@@ -187,8 +200,8 @@ export default function ClientCreator() {
               id="born_in"
               placeholder="Mijozning tug'ilgan yili"
               className="global_input"
-              value={born_in}
-              onChange={(e) => setborn_in(e.target.value)}
+              value={form.born_in}
+              onChange={(e) => updateField("born_in", e.target.value)}
               required
             />
           </div>
@@ -200,8 +213,8 @@ export default function ClientCreator() {
               id="origin"
               placeholder="Mijozning tug'ilgan shahri"
               className="global_input"
-              value={origin}
-              onChange={(e) => setorigin(e.target.value)}
+              value={form.origin}
+              onChange={(e) => updateField("origin", e.target.value)}
               required
             />
           </div>
@@ -241,7 +254,12 @@ export default function ClientCreator() {
                           onSelect={(currentValue) => {
                             const id = currentValue.split("#")[0];
                             settype_id(id === type_id ? "" : id);
-                            setprice(
+                            // setForm((prev) => ({
+                            //   ...prev,
+                            //   type_ids: [Number(id)] as [number],
+                            // }));
+                            updateField(
+                              "price",
                               String(
                                 valid_types.find(
                                   (type) => String(type.id) === id,
@@ -276,8 +294,8 @@ export default function ClientCreator() {
               id="price"
               placeholder="Qancha to'landi"
               className="global_input"
-              value={price}
-              onChange={(e) => setprice(e.target.value)}
+              value={form.price}
+              onChange={(e) => updateField("price", e.target.value)}
               required
             />
           </div>

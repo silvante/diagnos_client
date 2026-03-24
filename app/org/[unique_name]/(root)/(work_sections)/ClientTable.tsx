@@ -104,12 +104,12 @@ export default function ClientTable() {
 
   useEffect(() => {
     if (!organization?.id) {
-      console.log("No organization.id yet → skipping socket join for now");
+      // console.log("No organization.id yet → skipping socket join for now");
       return;
     }
 
     const orgId = String(organization.id); // ← force string, matches server expectation
-    console.log("Using orgId for join:", orgId);
+    // console.log("Using orgId for join:", orgId);
 
     // Connect if needed
     if (!socket.connected) {
@@ -117,11 +117,11 @@ export default function ClientTable() {
     }
 
     const onConnect = () => {
-      console.log("Socket connected → ID:", socket.id);
+      // console.log("Socket connected → ID:", socket.id);
 
       if (!hasJoined.current) {
         console.log(
-          `Emitting join-org with: "${orgId}" (type: ${typeof orgId})`,
+          // `Emitting join-org with: "${orgId}" (type: ${typeof orgId})`,
         );
         socket.emit("join-org", orgId);
         hasJoined.current = true;
@@ -133,7 +133,7 @@ export default function ClientTable() {
     };
 
     const onJoinSuccess = (data: any) => {
-      console.log("Join SUCCESS:", data);
+      // console.log("Join SUCCESS:", data);
     };
 
     const onJoinError = (msg: any) => {
