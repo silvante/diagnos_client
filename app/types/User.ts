@@ -13,6 +13,7 @@ export interface User {
   _count: {
     organizations: number;
   };
+  diagnoses: Diagnosis[];
 }
 
 export interface Organization {
@@ -49,10 +50,11 @@ export interface Type {
   description: string;
   price: number;
   _count: {
-    clients: number;
+    diagnosis: number;
     attached_workers: number;
   };
   created_at: Date;
+  diagnoses: Diagnosis[];
 }
 
 export interface Client {
@@ -61,12 +63,10 @@ export interface Client {
   born_in: number;
   surname: string;
   origin: string;
-  type: Type;
-  type_id: number;
   is_checked: boolean;
   price: number;
   created_at: Date;
-  diagnosis: string;
+  diagnoses: Diagnosis[];
 }
 
 export type BannerData = {
@@ -146,4 +146,17 @@ export interface RevenueStats {
   revenueByDay: RevenueByDay[];
   revenueByMonth: RevenueByMonth[];
   revenueByType: RevenueByType[];
+}
+
+export interface Diagnosis {
+  id: number;
+  client: Client;
+  client_id: number;
+  type: Type;
+  type_id: number;
+  is_checked: boolean;
+  reporter?: User;
+  reporter_id?: number;
+  reporter_name?: string;
+  report?: string;
 }
