@@ -57,7 +57,7 @@ export default function ClientCard({ client }: { client: Client }) {
                 {diagnosis.type.name}
               </span>
 
-              <span className="text-sm text-gray-700">
+              <span className="text-sm text-gray-700 bg-yellow-100 px-1">
                 {diagnosis.report ?? "—"}
               </span>
 
