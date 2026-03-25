@@ -144,16 +144,20 @@ export default function ClientTable() {
     // events (functions)
 
     const onNewClient = (event_data: any) => {
-      const client: Client = event_data.client;
+      let client: Client = event_data.client;
       const event_owner = event_data.event_owner;
 
       if (currentJob && currentJob.role === "doctor") {
         const type_ids: Number[] = currentJob.attached_types.map(
           (at: WorkerAttachedTypes) => at.type_id,
         );
-        if (!type_ids.includes(client.type_id)) {
+        const related_diagnoses = client.diagnoses.filter((d) =>
+          type_ids.includes(d.type_id),
+        );
+        if (related_diagnoses.length <= 0) {
           return;
         }
+        client.diagnoses = related_diagnoses;
       }
 
       if (event_owner !== currentUser.id) {
@@ -173,9 +177,13 @@ export default function ClientTable() {
         const type_ids: Number[] = currentJob.attached_types.map(
           (at: WorkerAttachedTypes) => at.type_id,
         );
-        if (!type_ids.includes(client.type_id)) {
+        const related_diagnoses = client.diagnoses.filter((d) =>
+          type_ids.includes(d.type_id),
+        );
+        if (related_diagnoses.length <= 0) {
           return;
         }
+        client.diagnoses = related_diagnoses;
       }
 
       if (event_owner !== currentUser.id) {
@@ -194,9 +202,13 @@ export default function ClientTable() {
         const type_ids: Number[] = currentJob.attached_types.map(
           (at: WorkerAttachedTypes) => at.type_id,
         );
-        if (!type_ids.includes(client.type_id)) {
+        const related_diagnoses = client.diagnoses.filter((d) =>
+          type_ids.includes(d.type_id),
+        );
+        if (related_diagnoses.length <= 0) {
           return;
         }
+        client.diagnoses = related_diagnoses;
       }
 
       if (event_owner !== currentUser.id) {

@@ -155,6 +155,10 @@ export default function ClientCreator() {
 
     updateField("type_ids", ids);
     updateField("price", sum);
+
+    if (selectedTypes.length <= 0) {
+      updateField("price", "");
+    }
   }, [selectedTypes]);
 
   // types
@@ -305,7 +309,7 @@ export default function ClientCreator() {
               </PopoverContent>
             </Popover>
             {selectedTypes && selectedTypes.length > 0 && (
-              <div className="global_input">
+              <div className="px-3 border border-slate-400 rounded-lg">
                 {selectedTypes.map((st) => (
                   <div
                     key={st.id}
