@@ -135,7 +135,7 @@ export default function ClientSearchEngine({
           <HashLoader color="#7c3aed" size={58} />
         </div>
       ) : (
-        <div className="w-full p-2 md:p-5 rounded-xl border border-gray-300">
+        <div className="w-full p-2 md:p-5 rounded-xl border border-gray-300 bg-gray-100">
           {clients && clients.length > 0 ? (
             <div className="w-full space-y-5">
               {clients.map((client: Client) => (
