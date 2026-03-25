@@ -334,7 +334,7 @@ export default function ClientTable() {
                         <tr
                           className={`special_animation border-gray-200 ${
                             !isEven(index + 1) ? "bg-white" : "bg-gray-50"
-                          } ${client.is_checked && "border-b border-gray-300"}`}
+                          }`}
                         >
                           <th
                             scope="row"
@@ -440,7 +440,7 @@ export default function ClientTable() {
                           <tr
                             className={`special_animation border-gray-200 ${
                               !isEven(index + 1) ? "bg-white" : "bg-gray-50"
-                            } border-b border-gray-300`}
+                            }`}
                           >
                             <td
                               colSpan={7}
