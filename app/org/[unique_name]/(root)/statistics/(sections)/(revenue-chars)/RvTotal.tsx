@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function RvTotal({ data }: { data: RevenueStats }) {
   const [year, setYear] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(data.totalRevenue._sum.price);
   const thisMonth = data.revenueByMonth[data.revenueByMonth.length - 1];
 
   useEffect(() => {
@@ -13,11 +13,11 @@ export default function RvTotal({ data }: { data: RevenueStats }) {
     setYear(yearly);
   }, []);
 
-  useEffect(() => {
-    let total = 0;
-    data.revenueByType.map((rm) => (total = total + rm.total));
-    setTotal(total);
-  }, []);
+  // useEffect(() => {
+  //   let total = 0;
+  //   data.revenueByType.map((rm) => (total = total + rm.total));
+  //   setTotal(total);
+  // }, []);
 
   return (
     <div className="space-y-5">

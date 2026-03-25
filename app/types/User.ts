@@ -142,10 +142,17 @@ export interface RevenueByType {
   total: number;
 }
 
+export interface TotalRevenueSums {
+  _sum: {
+    price: number;
+  };
+}
+
 export interface RevenueStats {
   revenueByDay: RevenueByDay[];
   revenueByMonth: RevenueByMonth[];
-  revenueByType: RevenueByType[];
+  // revenueByType: RevenueByType[];
+  totalRevenue: TotalRevenueSums;
 }
 
 export interface Diagnosis {

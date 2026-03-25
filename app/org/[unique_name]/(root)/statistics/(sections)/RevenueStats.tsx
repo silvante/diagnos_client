@@ -14,7 +14,7 @@ import { updateRevenueStats } from "@/app/store/slices/statsSlice";
 import ErrorMessage from "@/app/(global_components)/ErrorMessage";
 import RvDayChart from "./(revenue-chars)/RvDayChart";
 import RvMonthChart from "./(revenue-chars)/RvMonthChart";
-import RvTypeChart from "./(revenue-chars)/RvTypeChart";
+// import RvTypeChart from "./(revenue-chars)/RvTypeChart";
 import RvTotal from "./(revenue-chars)/RvTotal";
 
 export default function RevenueStatistics({
@@ -51,6 +51,8 @@ export default function RevenueStatistics({
     getRevenueStats();
   }, []);
 
+  console.log(revenue);
+
   return (
     <div className="space-y-5 w-full">
       <Heading text="Daromad" />
@@ -72,7 +74,7 @@ export default function RevenueStatistics({
               <RvDayChart data={revenue.revenueByDay} />
               <div className="flex flex-col lg:flex-row gap-5 justify-between items-center w-full">
                 <RvMonthChart data={revenue.revenueByMonth} />
-                <RvTypeChart data={revenue.revenueByType} />
+                {/* <RvTypeChart data={revenue.revenueByType} /> */}
               </div>
               <div>
                 <p>

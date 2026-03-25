@@ -23,8 +23,10 @@ ChartJS.register(
   Title,
   ArcElement,
   Tooltip,
-  Legend
+  Legend,
 );
+
+// out of service <------------------------------- Do Not Touch ------------------------------>
 
 import { RevenueByType } from "@/app/types/User";
 import { useState } from "react";
@@ -82,7 +84,7 @@ export default function RvTypeChart({ data }: { data: RevenueByType[] }) {
           <BarChart3 /> Ustun
         </button>
       </div>
-      <div className="w-full h-[300px]">
+      <div className="w-full h-75">
         {chartType === "pie" && (
           <Pie options={options} data={chartData} className="w-full h-full" />
         )}
