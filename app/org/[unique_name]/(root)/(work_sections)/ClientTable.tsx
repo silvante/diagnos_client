@@ -449,7 +449,7 @@ export default function ClientTable() {
                               {client.diagnoses.map((d) => (
                                 <div
                                   key={d.id}
-                                  className="px-4 py-2 rounded-lg border border-gray-300"
+                                  className="px-4 py-2 rounded-lg border border-gray-300 space-y-1"
                                 >
                                   <p>
                                     <span className="font-semibold">

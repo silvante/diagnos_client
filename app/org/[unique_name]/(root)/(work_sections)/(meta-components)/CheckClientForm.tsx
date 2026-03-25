@@ -23,10 +23,19 @@ export default function CheckClientForm({
 
   if (diagnosis.is_checked) {
     return (
-      <p>
-        <span className="font-semibold">{diagnosis.type.name}: </span>
-        {diagnosis.report}
-      </p>
+      <div
+        key={diagnosis.id}
+        className="px-4 py-2 rounded-lg border border-gray-300 space-y-1"
+      >
+        <p>
+          <span className="font-semibold">{diagnosis.type.name}: </span>
+          {diagnosis.report}
+        </p>
+        <p>
+          <span className="font-semibold">Tekshirdi: </span>
+          {diagnosis.reporter_name}
+        </p>
+      </div>
     );
   }
 

@@ -66,6 +66,7 @@ export default function ClientCreator() {
       type_ids: [0] as [number],
       price: "",
     });
+    setSelectedTypes([]);
   }
   useClearShortcut(ClearFields);
 
