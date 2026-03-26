@@ -282,14 +282,14 @@ export default function ClientCreator() {
                             //   ...prev,
                             //   type_ids: [Number(id)] as [number],
                             // }));
-                            updateField(
-                              "price",
-                              String(
-                                valid_types.find(
-                                  (type) => String(type.id) === id,
-                                )?.price,
-                              ),
-                            );
+                            // updateField(
+                            //   "price",
+                            //   String(
+                            //     valid_types.find(
+                            //       (type) => String(type.id) === id,
+                            //     )?.price,
+                            //   ),
+                            // );
                             setOpen(false);
                           }}
                         >
