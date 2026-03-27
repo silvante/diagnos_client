@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/popover";
 import { useDispatch, useSelector } from "react-redux";
 import Spinner from "@/app/(global_components)/Spinner";
-import { Client, Type } from "@/app/types/User";
+import { Client, Diagnosis, Type } from "@/app/types/User";
 import { useEffect, useState } from "react";
 import { replaceClient } from "@/app/store/slices/clientSlice";
 import clientService from "@/app/api/services/clientService";
@@ -60,10 +60,6 @@ export default function UpdateClientForm() {
 
   const [type_id, settype_id] = useState("");
   const [selectedTypes, setSelectedTypes] = useState<any[]>(client_types);
-
-  console.log(client_type_ids);
-  console.log(client_types);
-  console.log(selectedTypes);
 
   // for formData
   const [form, setForm] = useState({
@@ -166,6 +162,26 @@ export default function UpdateClientForm() {
       updateField("price", "");
     }
   }, [selectedTypes]);
+
+  console.log(form.type_ids);
+  console.log(client_types);
+  console.log(selectedTypes);
+
+  // check if type is reported to prevent from removing them
+  function IsChecked(type_id: number) {
+    const attached_diagnos: Diagnosis | undefined = client.diagnoses.find(
+      (d) => d.type_id == type_id,
+    );
+    if (!attached_diagnos) {
+      return;
+    }
+
+    if (attached_diagnos.is_checked) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   // types
   const valid_types: Type[] = types;
@@ -319,15 +335,23 @@ export default function UpdateClientForm() {
                 {selectedTypes.map((st) => (
                   <div
                     key={st.id}
-                    className="py-2 border-b last:border-none border-slate-400 flex items-center justify-between"
+                    className={`py-2 border-b last:border-none border-slate-400 flex items-center justify-between ${IsChecked(st.id) && "text-gray-400"}`}
                   >
                     <p>{st.name}</p>
-                    <button
-                      className="text-red-400 cursor-pointer"
-                      onClick={() => RemoveSelectedType(st.id)}
-                    >
-                      <Delete />
-                    </button>
+                    <div className="space-x-2 items-center flex">
+                      {IsChecked(st.id) && (
+                        <span className="text-xs bg-green-200 text-black">
+                          Tekshirilgan
+                        </span>
+                      )}
+                      <button
+                        disabled={IsChecked(st.id)}
+                        className="text-red-400 cursor-pointer disabled:text-gray-400"
+                        onClick={() => RemoveSelectedType(st.id)}
+                      >
+                        <Delete />
+                      </button>
+                    </div>
                   </div>
                 ))}
               </div>
