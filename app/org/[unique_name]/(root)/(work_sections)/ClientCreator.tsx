@@ -244,7 +244,7 @@ export default function ClientCreator() {
           </div>
 
           <div className="flex flex-col space-y-1">
-            <label htmlFor="type">Turi</label>
+            <label htmlFor="type">Turlar</label>
             <Popover open={open} onOpenChange={setOpen}>
               <PopoverTrigger asChild>
                 <Button
