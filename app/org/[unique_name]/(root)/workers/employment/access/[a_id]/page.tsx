@@ -6,18 +6,18 @@ import { Vacancy } from "@/app/types/User";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BackBtn from "@/app/(global_components)/BackBtn";
-import HireingForm from "../(components)/HireingForm";
-import VacancyDetails from "../(components)/VacancyDetails";
+import VacancyDetails from "../../(components)/VacancyDetails";
+import HireingForm from "../../(components)/HireingForm";
 
-export default function VacancyDetailsPage() {
+export default function VacancyAccessDetailsPage() {
   const router = useRouter();
   const params = useParams();
-  const { id, unique_name } = params;
+  const { a_id, unique_name } = params;
   const [vacancy, setVacancy] = useState<Vacancy | null>(null);
 
-  async function GetVacancy(id: number) {
+  async function GetVacancy(a_id: string) {
     try {
-      const res: any = await vacancyService.getById(id);
+      const res: any = await vacancyService.getByAccesId(a_id);
       const res_vacancy: Vacancy = res;
       setVacancy(res_vacancy);
     } catch (error) {
@@ -26,7 +26,7 @@ export default function VacancyDetailsPage() {
   }
 
   useEffect(() => {
-    GetVacancy(Number(id));
+    GetVacancy(String(a_id));
   }, []);
 
   if (!vacancy) {

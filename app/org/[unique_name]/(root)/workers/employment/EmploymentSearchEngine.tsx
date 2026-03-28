@@ -135,7 +135,7 @@ export default function EmpSearchEngine({
               className="py-2 text-center px-4 rounded-lg bg-violet-600 text-white cursor-pointer"
               type="submit"
             >
-              {isLoading ? "qidirilmoqda..." : "Qidirish"}
+              {isLoading ? "Qidirilmoqda..." : "Qidirish"}
             </button>
           </div>
         </form>

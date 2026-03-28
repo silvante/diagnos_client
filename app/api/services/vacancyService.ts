@@ -19,7 +19,7 @@ const vacancyService = {
     }
   },
 
-  getByAccesId: async (a_id: number) => {
+  getByAccesId: async (a_id: string) => {
     try {
       return await api.get(apiEndpoints.getVacancyByAccessId(a_id));
     } catch (error) {

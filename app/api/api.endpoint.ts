@@ -46,7 +46,7 @@ const apiEndpoints = {
 
   // vacancies
   getVacancyById: (id: number) => `/vacancy/${id}`,
-  getVacancyByAccessId: (a_id: number) => `/vacancy/access/${a_id}`,
+  getVacancyByAccessId: (a_id: string) => `/vacancy/access/${a_id}`,
   createVacancy: "/vacancy/create",
   getAllMyVacancies: "/vacancy/mine",
   updateVacancy: (id: number) => `/vacancy/${id}/update`,
