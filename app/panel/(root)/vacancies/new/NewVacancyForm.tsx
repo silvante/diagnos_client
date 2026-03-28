@@ -48,6 +48,7 @@ export default function NewVacancyForm() {
   const [about, setAbout] = useState("");
   const [role, setRole] = useState(workerRoles[0].name);
   const [contact, setContact] = useState("");
+  const [isPrivate, setIsPrivate] = useState("private");
 
   async function HandleCreateOrg(e: any) {
     e.preventDefault();
@@ -61,6 +62,7 @@ export default function NewVacancyForm() {
         job,
         role,
         contact: `${contact}`,
+        is_private: isPrivate === "private" ? true : false,
       };
 
       const res: any = await vacancyService.create(createData);
@@ -72,7 +74,9 @@ export default function NewVacancyForm() {
       setError("");
     } catch (error: any) {
       if (!error.response) {
-        setError("Barcha maydonlarni to'g'ri to'ldirganingizga ishonch hosil qiling!");
+        setError(
+          "Barcha maydonlarni to'g'ri to'ldirganingizga ishonch hosil qiling!",
+        );
       } else {
         setError(error.response.data.message);
       }
@@ -105,7 +109,8 @@ export default function NewVacancyForm() {
           <p>{currentUser.name}</p>
         </div>
         <p className="text-sm text-gray-500">
-          Bu hisob sizning vakansiyangizga biriktiriladi, agar uni o'zgartirmoqchi bo'lsangiz, hisobni almashtiring yoki sozlang.
+          Bu hisob sizning vakansiyangizga biriktiriladi, agar uni
+          o'zgartirmoqchi bo'lsangiz, hisobni almashtiring yoki sozlang.
         </p>
       </div>
 
@@ -176,7 +181,7 @@ export default function NewVacancyForm() {
         <textarea
           rows={3}
           maxLength={500}
-          minLength={200}
+          minLength={80}
           id="about"
           name="about"
           value={about}
@@ -189,15 +194,16 @@ export default function NewVacancyForm() {
           <p>
             Tavsifda mavjud:{" "}
             <span
-              className={`transition-all ${about.length > 200 ? "text-green-600" : "text-red-600"
-                }`}
+              className={`transition-all ${
+                about.length > 80 ? "text-green-600" : "text-red-600"
+              }`}
             >
               {about.length} belgilar
             </span>
           </p>
         )}
         <p className="text-sm text-gray-500">
-          Kamida 200 belgi, ko'pi bilan 500 belgi
+          Kamida 80 belgi, ko'pi bilan 500 belgi
         </p>
       </div>
 
@@ -255,6 +261,28 @@ export default function NewVacancyForm() {
           </InputOTPGroup>
         </InputOTP>
         <p className="text-sm text-gray-500">Faqat raqamlar</p>
+      </div>
+
+      <div className="space-y-1">
+        <label htmlFor="is_private" className="block">
+          Vakansiya turi*
+        </label>
+        <select
+          id="is_private"
+          name="is_private"
+          className="global_input w-full none"
+          value={isPrivate}
+          onChange={(e) => setIsPrivate(e.target.value)}
+          required
+        >
+          <option value={"private"} selected>
+            Maxfiy
+          </option>
+          <option value={"public"}>Ommaviy</option>
+        </select>
+        <p className="text-sm text-gray-500">
+          Maxfiy vacansiyalar ommaviy ish bozoriga qo'shilmaydi, va faqat ID orqali xavfsiz topib olinadi.
+        </p>
       </div>
 
       {/* submit */}
