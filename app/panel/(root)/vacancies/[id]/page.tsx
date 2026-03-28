@@ -31,7 +31,7 @@ export default function VacancyDetailsPage() {
   if (vacancies !== null) {
     useEffect(() => {
       setVacancy(
-        vacancies.find((vacancy: Vacancy) => vacancy.id == Number(id))
+        vacancies.find((vacancy: Vacancy) => vacancy.id == Number(id)),
       );
     }, []);
   } else {
@@ -70,6 +70,18 @@ export default function VacancyDetailsPage() {
               </h2>
               <p className="text_color w-full truncate">{vacancy.user.email}</p>
             </div>
+          </div>
+        </div>
+        <div className="w-full border border-gray-300 rounded-2xl p-4 lg:p-8 space-y-5 bg-white">
+          <Heading text={`ID: ${vacancy.a_id}`} />
+          <div className="space-y-3 w-full">
+            <p className="text_color font-semibold w-full truncate">
+              Vakansiya turi: {vacancy.is_private ? (
+                <span className="font-medium text-red-500">Maxfiy</span>
+              ) : (
+                <span className="font-medium text-green-500">Ommaviy</span>
+              )}
+            </p>
           </div>
         </div>
         <div className="w-full border border-gray-300 rounded-2xl p-4 lg:p-8 space-y-5 bg-white">
