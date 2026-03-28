@@ -76,6 +76,7 @@ export type BannerData = {
 
 export interface Vacancy {
   id: number;
+  a_id: string;
   name: string;
   age: number;
   about: string;
