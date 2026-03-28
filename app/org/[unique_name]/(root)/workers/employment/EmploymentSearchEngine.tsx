@@ -8,6 +8,7 @@ import ErrorMessage from "@/app/(global_components)/ErrorMessage";
 import { HashLoader } from "react-spinners";
 import { ShieldAlert } from "lucide-react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import Heading from "@/app/(global_components)/Heading";
 
 export default function EmpSearchEngine({
   organization,
@@ -63,6 +64,7 @@ export default function EmpSearchEngine({
   return (
     <div className="space-y-8">
       <div className="p-5 bg-white border border-gray-300 rounded-2xl space-y-5">
+        <Heading text="Ishchi qidirish" />
         {error !== "" && (
           <Alert variant="destructive">
             <ShieldAlert />
