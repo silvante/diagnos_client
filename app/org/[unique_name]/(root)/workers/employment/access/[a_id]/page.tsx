@@ -39,7 +39,7 @@ export default function VacancyAccessDetailsPage() {
     return (
       <div className="space-y-5">
         <div className="w-full flex justify-between items-center">
-          <Heading text={`Vakansiya - ${vacancy.id}`} />
+          <Heading text={`Vakansiya - ${vacancy.a_id}`} />
           <BackBtn href={`/org/${unique_name}/workers/employment`} />
         </div>
         <VacancyDetails vacancy={vacancy} />
