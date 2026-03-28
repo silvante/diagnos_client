@@ -56,7 +56,7 @@ export default function VacancyList() {
                 className="rounded-xl border border-gray-200 flex flex-col bg-white"
               >
                 <div className="px-5 py-3 space-y-2 border-b border-gray-200">
-                  <p className="text-xl">ID: <span className="font-semibold">{vacancy.a_id}</span></p>
+                  <p className="text-xl text_color">ID: <span className="font-semibold">{vacancy.a_id}</span></p>
                 </div>
                 <div className="p-5 space-y-2 border-b border-gray-200">
                   <div className="bg-gray-300 max-w-16 w-full aspect-square rounded-full overflow-hidden border border-gray-400">

@@ -21,9 +21,9 @@ export default function Hero() {
 
   return (
     <div className="w-full space-y-5">
-      <div className="flex justify-center items-center">
+      {/* <div className="flex justify-center items-center">
         <Author />
-      </div>
+      </div> */}
       <div className="w-full flex justify-center items-center flex-col">
         <div className="flex-1 space-y-4 flex flex-col justify-center items-center text-center">
           <h1 className="text-4xl md:text-6xl text_color text-shadow-2xs">

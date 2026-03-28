@@ -17,6 +17,8 @@ export default function AccessIdForm({ org }: { org: Organization }) {
               name="a_id"
               required
               placeholder="XXXXXXXX"
+              maxLength={8}
+              minLength={8}
               className="outline-none py-2 flex-1"
             />
           </div>
