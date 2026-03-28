@@ -19,6 +19,14 @@ const vacancyService = {
     }
   },
 
+  getByAccesId: async (a_id: number) => {
+    try {
+      return await api.get(apiEndpoints.getVacancyByAccessId(a_id));
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getAll: async () => {
     try {
       return await api.get(apiEndpoints.getAllMyVacancies);
@@ -49,11 +57,11 @@ const vacancyService = {
     role: string,
     job: string,
     page: number,
-    limit: number
+    limit: number,
   ) => {
     try {
       return await api.get(
-        apiEndpoints.searchVacancy(origin, q, role, job, page, limit)
+        apiEndpoints.searchVacancy(origin, q, role, job, page, limit),
       );
     } catch (error) {
       throw error;
