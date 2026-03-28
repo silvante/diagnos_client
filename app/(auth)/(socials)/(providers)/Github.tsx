@@ -8,7 +8,7 @@ export default function Github({ setErrorMessage }: any) {
   const handleGithubLogin = () => {
     try {
       setLoading(true);
-      window.location.href = "https://api.diagnos.uz/auth/github";
+      window.location.href = "http://localhost:8080/auth/github";
     } catch (error) {
       setErrorMessage("nimadir xato ketdi, iltimos keyinroq qayta urinib ko'ring");
     }

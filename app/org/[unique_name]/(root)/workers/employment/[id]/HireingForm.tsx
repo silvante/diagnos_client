@@ -4,7 +4,7 @@ import { workerRoles } from "@/app/global/data";
 import { Type, Vacancy } from "@/app/types/User";
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { MailWarning, ShieldAlert, Terminal, X } from "lucide-react";
+import { MailWarning, ShieldAlert, X } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useDispatch, useSelector } from "react-redux";
 import typeService from "@/app/api/services/typeService";
