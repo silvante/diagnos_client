@@ -106,6 +106,7 @@ export default function RootLayout({
               <NextTopLoader color="#7f22fe" showSpinner={false} />
 
               {children}
+            
 
               <Toaster position="top-center" reverseOrder={false} />
               <SFX />
