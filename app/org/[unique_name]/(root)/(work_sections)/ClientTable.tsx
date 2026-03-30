@@ -160,7 +160,7 @@ export default function ClientTable() {
         client.diagnoses = related_diagnoses;
       }
 
-      if (event_owner !== currentUser.id) {
+      if (event_owner !== currentUser?.id) {
         toast.success(`Yangi mijoz: ${client.name} ${client.surname || ""}`);
         PositiveNotification();
 
@@ -186,7 +186,7 @@ export default function ClientTable() {
         client.diagnoses = related_diagnoses;
       }
 
-      if (event_owner !== currentUser.id) {
+      if (event_owner !== currentUser?.id) {
         toast.error(`Mijoz o'chirildi: ${client.name} ${client.surname || ""}`);
         NegativeNotification();
 
@@ -211,7 +211,7 @@ export default function ClientTable() {
         client.diagnoses = related_diagnoses;
       }
 
-      if (event_owner !== currentUser.id) {
+      if (event_owner !== currentUser?.id) {
         toast(`Mijoz yangilandi: ${client.name} ${client.surname || ""}`, {
           icon: "📝",
         });

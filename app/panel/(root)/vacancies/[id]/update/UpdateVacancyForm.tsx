@@ -43,7 +43,7 @@ export default function UpdateVacancyForm({ vacancy }: { vacancy: Vacancy }) {
   };
 
   // form data
-  const [name, setName] = useState(currentUser.name);
+  const [name, setName] = useState(currentUser?.name);
   const [age, setAge] = useState(`${vacancy.age}`);
   const [origin, setOrigin] = useState(vacancy.origin);
   const [job, setJob] = useState(vacancy.job);
@@ -104,7 +104,7 @@ export default function UpdateVacancyForm({ vacancy }: { vacancy: Vacancy }) {
               </AvatarFallback>
             </Avatar>
           </div>
-          <p>{currentUser.name}</p>
+          <p>{currentUser?.name}</p>
         </div>
         <p className="text-sm text-gray-500">
           Hisob o'zgartirilmaydi, agar muammo bo'lsa, vakansiyani o'chirib qayta yarating!

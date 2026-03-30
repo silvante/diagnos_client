@@ -169,13 +169,13 @@ export default function NewOrganizationForm() {
         <div className="p-1 border-gray-300 border rounded-full pr-3 flex gap-2 items-center cursor-pointer">
           <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden flex justify-center items-center text-gray-500">
             <Avatar className="w-full h-full">
-              <AvatarImage src={currentUser.avatar} />
+              <AvatarImage src={currentUser?.avatar} />
               <AvatarFallback>
-                {currentUser.name.split("")[0].toUpperCase()}
+                {currentUser?.name.split("")[0].toUpperCase()}
               </AvatarFallback>
             </Avatar>
           </div>
-          <p>{currentUser.name}</p>
+          <p>{currentUser?.name}</p>
         </div>
         <p className="text-sm text-gray-500">
           Bu hisob ushbu tashkilotning egasi bo'ladi, agar uni o'zgartirmoqchi bo'lsangiz, hisobni almashtiring yoki sozlang.

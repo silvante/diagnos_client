@@ -9,7 +9,7 @@ export default function CommunityPanelPage() {
   return (
     <div className="space-y-8">
       <div className="w-full overflow-hidden">
-        <Heading text={`👋 Salom ${currentUser.name}`} />
+        <Heading text={`👋 Salom ${currentUser?.name}`} />
       </div>
       <Community />
       <div className="space-y-2">

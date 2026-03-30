@@ -35,13 +35,13 @@ export default function EditProfile() {
 
   const [avatar, setAvatar] = useState<File | null>(null);
   const [avatarBase64, setAvatarBase64] = useState<string | null>(
-    currentUser.avatar
+    currentUser?.avatar
   );
 
-  const [name, setName] = useState(currentUser.name);
-  const [bio, setBio] = useState(currentUser.bio);
+  const [name, setName] = useState(currentUser?.name);
+  const [bio, setBio] = useState(currentUser?.bio);
   const [contact, setContact] = useState(
-    currentUser.contact ? formatPhone(currentUser.contact) : ""
+    currentUser?.contact ? formatPhone(currentUser?.contact) : ""
   );
 
   function ConvertImageToBase64(file: File): Promise<string> {
@@ -135,7 +135,7 @@ export default function EditProfile() {
               <Avatar className="w-full h-full text-4xl">
                 <AvatarImage src={avatarBase64} />
                 <AvatarFallback>
-                  {currentUser.name.split("")[0].toUpperCase()}
+                  {currentUser?.name.split("")[0].toUpperCase()}
                 </AvatarFallback>
               </Avatar>
             )}
