@@ -41,7 +41,7 @@ export default function NewVacancyForm() {
   };
 
   // form data
-  const [name, setName] = useState(currentUser.name);
+  const [name, setName] = useState(currentUser?.name);
   const [age, setAge] = useState("");
   const [origin, setOrigin] = useState(origins[0].name);
   const [job, setJob] = useState("");
@@ -50,9 +50,29 @@ export default function NewVacancyForm() {
   const [contact, setContact] = useState("");
   const [isPrivate, setIsPrivate] = useState("private");
 
+  if(!currentUser){
+    return (
+      <p>loading...</p>
+    )
+  }
+
+  const resetForm = () => {
+    setAge("");
+    setOrigin(origins[0].name);
+    setJob("");
+    setAbout("");
+    setRole(workerRoles[0].name);
+    setContact("");
+    setIsPrivate("private");
+  };
+
   async function HandleCreateOrg(e: any) {
     e.preventDefault();
+
+    if (isLoading) return;
+
     setIsLoading(true);
+
     try {
       const createData: any = {
         name,
@@ -62,24 +82,26 @@ export default function NewVacancyForm() {
         job,
         role,
         contact: `${contact}`,
-        is_private: isPrivate === "private" ? true : false,
+        is_private: isPrivate === "private",
       };
 
       const res: any = await vacancyService.create(createData);
       const vacancy: Vacancy = res;
+
       dispatch(setLoading());
       dispatch(pushVacancy(vacancy));
+
+      resetForm();
+
       router.push("/panel/vacancies");
-      setIsLoading(false);
-      setError("");
+
     } catch (error: any) {
       if (!error.response) {
-        setError(
-          "Barcha maydonlarni to'g'ri to'ldirganingizga ishonch hosil qiling!",
-        );
+        setError("Barcha maydonlarni to'g'ri to'ldiring!");
       } else {
         setError(error.response.data.message);
       }
+    } finally {
       setIsLoading(false);
     }
   }
@@ -100,13 +122,13 @@ export default function NewVacancyForm() {
         <div className="p-1 border-gray-300 border rounded-full pr-3 flex gap-2 items-center cursor-pointer">
           <div className="w-8 h-8 rounded-full bg-gray-300 overflow-hidden flex justify-center items-center text-gray-500">
             <Avatar className="w-full h-full">
-              <AvatarImage src={currentUser.avatar} />
+              <AvatarImage src={currentUser?.avatar} />
               <AvatarFallback>
-                {currentUser.name.split("")[0].toUpperCase()}
+                {currentUser?.name.split("")[0].toUpperCase()}
               </AvatarFallback>
             </Avatar>
           </div>
-          <p>{currentUser.name}</p>
+          <p>{currentUser?.name}</p>
         </div>
         <p className="text-sm text-gray-500">
           Bu hisob sizning vakansiyangizga biriktiriladi, agar uni
@@ -124,10 +146,9 @@ export default function NewVacancyForm() {
           id="name"
           name="name"
           className="global_input w-full"
-          placeholder="Tashkilot nomini kiriting"
+          placeholder="Ismingiz"
           readOnly
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={currentUser?.name}
           maxLength={100}
           required
         />
@@ -194,9 +215,8 @@ export default function NewVacancyForm() {
           <p>
             Tavsifda mavjud:{" "}
             <span
-              className={`transition-all ${
-                about.length > 80 ? "text-green-600" : "text-red-600"
-              }`}
+              className={`transition-all ${about.length > 80 ? "text-green-600" : "text-red-600"
+                }`}
             >
               {about.length} belgilar
             </span>
@@ -219,7 +239,7 @@ export default function NewVacancyForm() {
         />
       </label>
 
-      {/* origin */}
+      {/* qayerdansiz viloyat */}
       <div className="space-y-1">
         <label htmlFor="origin" className="block">
           Siz qayerdansiz?*
@@ -275,7 +295,7 @@ export default function NewVacancyForm() {
           onChange={(e) => setIsPrivate(e.target.value)}
           required
         >
-          <option value={"private"} selected>
+          <option value={"private"}>
             Maxfiy
           </option>
           <option value={"public"}>Ommaviy</option>
@@ -289,9 +309,12 @@ export default function NewVacancyForm() {
       <div>
         <button
           type="submit"
-          className="bg-violet-600 text-white py-2 px-5 rounded-md hover:bg-violet-700 transition-colors cursor-pointer"
+          disabled={isLoading}
+          className={`bg-violet-600 text-white py-2 px-5 rounded-md transition-colors
+    ${isLoading ? "opacity-50 cursor-not-allowed" : "hover:bg-violet-700"}
+  `}
         >
-          {isLoading ? "yaratilmoqda..." : "Vakansiya yaratish"}
+          {isLoading ? "Yaratilmoqda..." : "Vakansiya yaratish"}
         </button>
       </div>
     </form>

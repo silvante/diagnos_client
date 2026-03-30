@@ -22,13 +22,13 @@ import {
 
 export default function DefaultOrg() {
   const [org, setOrg] = useState<Organization | null>(null);
-  const { currentUser, loading } = useSelector((state: any) => state.user);
-  const user: User = currentUser;
+  const { currentUser: user, loading }: { currentUser: null | User, loading: boolean } = useSelector((state: any) => state.user);
+
   useEffect(() => {
-    if (user.default_organization) {
+    if (user?.default_organization) {
       setOrg(user.default_organization.organization);
     }
-  }, []);
+  }, [user]);
 
   if (loading) {
     return <Spinner />;
@@ -98,11 +98,10 @@ export default function DefaultOrg() {
                 </p>
               ) : (
                 <p
-                  className={`text-sm ${
-                    org.subscription_status == "active"
-                      ? "text-green-600"
-                      : "text-red-600"
-                  }`}
+                  className={`text-sm ${org.subscription_status == "active"
+                    ? "text-green-600"
+                    : "text-red-600"
+                    }`}
                 >
                   <span className="text-black">holat:</span>{" "}
                   {org.subscription_status}

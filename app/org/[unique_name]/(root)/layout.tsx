@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import OrgValidator from "./OrgValidation";
-import PanelAuthDirector from "@/app/panel/(root)/PanelAuthDirector";
 import OrgHeader from "../../(components)/OrgHeader";
 import OrgBreadcrumbs from "../../(components)/OrgBreadcrumbs";
 import OrgAside from "../../(components)/OrgAside";
@@ -37,7 +36,6 @@ export default function OrgLayout({
     <>
       {loading ? (
         <>
-          <PanelAuthDirector />
           <OrgValidator unique_name={unique_name} />
         </>
       ) : (

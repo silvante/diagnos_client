@@ -3,7 +3,6 @@ import Heading from "@/app/(global_components)/Heading";
 import Spinner from "@/app/(global_components)/Spinner";
 import vacancyService from "@/app/api/services/vacancyService";
 import { Vacancy } from "@/app/types/User";
-import { Camera } from "lucide-react";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
