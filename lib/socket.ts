@@ -1,7 +1,7 @@
 // realtime imports
 import { io } from "socket.io-client";
 
-export const socket = io("https://api.diagnos.uz", {
+export const socket = io("http://localhost:8080", {
   autoConnect: false,
   transports: ["websocket"],
-})
+});
