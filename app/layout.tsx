@@ -6,14 +6,7 @@ import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import SFX from "./providers/sfx";
 import TanstackQueryProvider from "./providers/tanstackQueryProvider";
-import StoreUser from "./components/StoreUser";
-// import { cookies } from "next/headers";
-
-// // langs
-// import en from "@/meesages/en.json";
-// import uz from "@/meesages/uz.json";
-// import ru from "@/meesages/ru.json";
-// import LangProvider from "./providers";
+import AuthProvider from "./components/AuthProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -98,46 +91,25 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const StoredCookies = await cookies();
-  // const lang = StoredCookies.get("lang")?.value || "en";
-
-  // const translations: Record<string, any> = {
-  //   en,
-  //   uz,
-  //   ru,
-  // };
-
-  // for language
-
-  // const messages = translations[lang] || translations.en;
 
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-
-        {/* tanstack provider  */}
         <TanstackQueryProvider>
-
-          {/* Redux Provider  */}
           <StoreProvider>
+            <AuthProvider>
+              <NextTopLoader color="#7f22fe" showSpinner={false} />
 
-            {/* loader  */}
-            <NextTopLoader color="#7f22fe" showSpinner={false} />
+              {children}
 
-            <StoreUser />
-
-            {children}
-
-            {/* <LangProvider lang={lang} messages={messages}> */}
-
-            <Toaster position="top-center" reverseOrder={false} />
-
-            <SFX />
+              <Toaster position="top-center" reverseOrder={false} />
+              <SFX />
+            </AuthProvider>
           </StoreProvider>
         </TanstackQueryProvider>
       </body>
