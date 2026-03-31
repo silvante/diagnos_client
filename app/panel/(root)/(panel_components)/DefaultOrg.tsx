@@ -41,7 +41,7 @@ export default function DefaultOrg() {
               <h3 className="text-xl font-semibold">
                 Rol:{" "}
                 <span className="text-violet-600">
-                  {org.owner_id === user.id ? "Ega" : "Ishchi"}
+                  {org.owner_id === user?.id ? "Ega" : "Ishchi"}
                 </span>
               </h3>
             </div>
@@ -74,7 +74,7 @@ export default function DefaultOrg() {
             <div className="w-full p-5 border-b border-gray-200">
               <Link
                 href={
-                  org.owner_id === user.id
+                  org.owner_id === user?.id
                     ? `/org/${org.unique_name}/validation`
                     : `/job/${org.unique_name}`
                 }
