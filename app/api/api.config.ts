@@ -24,7 +24,7 @@ api.interceptors.response.use(
       localStorage.removeItem("access_token");
     }
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;
