@@ -188,6 +188,7 @@ export default function NewOrganizationForm() {
           Tashkilot nomi*
         </label>
         <input
+          disabled={isLoading}
           type="text"
           id="name"
           name="name"
@@ -206,6 +207,7 @@ export default function NewOrganizationForm() {
           Tashkilot tavsifi*
         </label>
         <textarea
+          disabled={isLoading}
           rows={3}
           maxLength={500}
           id="description"
@@ -248,6 +250,7 @@ export default function NewOrganizationForm() {
           )}
         </label>
         <input
+          disabled={isLoading}
           type="file"
           name="banner"
           id="banner"
@@ -285,6 +288,7 @@ export default function NewOrganizationForm() {
           </button>
         )}
         <input
+          disabled={isLoading}
           type="file"
           name="logo"
           id="logo"
@@ -299,10 +303,12 @@ export default function NewOrganizationForm() {
           Tashkilotingiz qayerda joylashgan?*
         </label>
         <select
+          disabled={isLoading}
           id="origin"
           name="origin"
           className="global_input w-full none"
           value={origin}
+          defaultValue={origin}
           onChange={(e) => setOrigin(e.target.value)}
           required
         >
@@ -322,6 +328,7 @@ export default function NewOrganizationForm() {
           Pinkod*
         </label>
         <InputOTP
+          disabled={isLoading}
           maxLength={6}
           id="pincode"
           pattern={REGEXP_ONLY_DIGITS}
@@ -350,7 +357,8 @@ export default function NewOrganizationForm() {
       <div>
         <button
           type="submit"
-          className="bg-violet-600 text-white py-2 px-5 rounded-md hover:bg-violet-700 transition-colors cursor-pointer"
+          disabled={isLoading}
+          className="bg-violet-600 text-white py-2 px-5 rounded-md hover:bg-violet-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {isLoading ? "yaratilmoqda..." : "Tashkilot yaratish"}
         </button>
