@@ -19,6 +19,7 @@ import { Eye, Menu } from "lucide-react";
 import OrgLink from "@/app/org/(components)/(meta-components)/OrgLink";
 import OverallWorkers from "./OverallWorkers";
 import ViewWorkerDetails from "./(components)/ViewWrokerDetails";
+import GettingJoinRequests from "./GettingJoinRequests";
 
 export default function WorkersList() {
   const [error, setError] = useState("");

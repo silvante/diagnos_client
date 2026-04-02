@@ -2,6 +2,7 @@ import Heading from "@/app/(global_components)/Heading";
 import { Plus } from "lucide-react";
 import Link from "next/link";
 import WorkersList from "./WorkersList";
+import GettingJoinRequests from "./GettingJoinRequests";
 
 export default function WorkersPage() {
   return (
@@ -16,6 +17,7 @@ export default function WorkersPage() {
           Ishga olish
         </Link>
       </div>
+      <GettingJoinRequests />
       <WorkersList />
     </section>
   );

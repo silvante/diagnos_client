@@ -308,7 +308,7 @@ export default function NewOrganizationForm() {
           name="origin"
           className="global_input w-full none"
           value={origin}
-          defaultValue={origin}
+          // defaultValue={origin}
           onChange={(e) => setOrigin(e.target.value)}
           required
         >

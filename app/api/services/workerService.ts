@@ -11,6 +11,14 @@ const workerService = {
     }
   },
 
+  getJoinRequests: async (org_id: number) => {
+    try {
+      return await api.get(apiEndpoints.getJoinRequests(org_id));
+    } catch (error) {
+      throw error;
+    }
+  },
+
   getById: async (org_id: number, id: number) => {
     try {
       return await api.get(apiEndpoints.getWorkerById(org_id, id));
