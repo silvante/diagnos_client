@@ -18,6 +18,8 @@ const apiEndpoints = {
   updateOrganization: (unique_name: string) => `/organizations/${unique_name}/update`,
   updateOrganizationPincode: (unique_name: string) => `/organizations/${unique_name}/update/pincode`,
   setOrganizationAsDefault: (unique_name: string) => `/organizations/${unique_name}/setAsDefault`,
+  findOrganizations: (unique_name: string) => `/organizations/open/${unique_name}`,
+  joinOrganizationsRequest: (unique_name:string) => `/join-requests/new/${unique_name}`,
 
   // types
   getOrgTypes: (org_id: number) => `/organizations/${org_id}/types`,
@@ -51,7 +53,7 @@ const apiEndpoints = {
   getAllMyVacancies: "/vacancy/mine",
   updateVacancy: (id: number) => `/vacancy/${id}/update`,
   deleteVacancy: (id: number) => `/vacancy/${id}/delete`,
-  searchVacancy: (origin: string, q: string, role:string | null, job: string | null, page: number, limit: number) => `/vacancy/search?origin=${origin}&q=${q}${role ? `&role=${role}` : ""}${job ? `&job=${job}` : ""}&page=${page}&limit=${limit}`,
+  searchVacancy: (origin: string, q: string, role: string | null, job: string | null, page: number, limit: number) => `/vacancy/search?origin=${origin}&q=${q}${role ? `&role=${role}` : ""}${job ? `&job=${job}` : ""}&page=${page}&limit=${limit}`,
 
   // workers
   hireWorker: (org_id: number, vacancy_id: number) => `/organizations/${org_id}/workers/${vacancy_id}/hire`,

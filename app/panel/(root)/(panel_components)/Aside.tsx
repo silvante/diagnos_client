@@ -21,9 +21,9 @@ export default function Aside() {
         <AsideLink href="/panel/organizations">
           <GitFork /> Tashkilotlar
         </AsideLink>
-        <AsideLink href="/panel/vacancies">
+        {/* <AsideLink href="/panel/vacancies">
           <FileUser /> Vakansiyalar
-        </AsideLink>
+        </AsideLink> */}
         <AsideLink href="/panel/jobs">
           <WorkflowIcon /> Ishlar
         </AsideLink>

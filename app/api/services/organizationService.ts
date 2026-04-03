@@ -69,6 +69,25 @@ const organizationService = {
       throw error;
     }
   },
+
+  findOrganizations: async (unique_name: string) => {
+    try {
+      return await api.get(apiEndpoints.findOrganizations(unique_name));
+    } catch (error) {
+      throw error;
+    }
+  },
+
+  joinOrganizationRequest: async (unique_name: string, role: "receptionist" | "doctor") => {
+    try {
+      return await api.post(
+        apiEndpoints.joinOrganizationsRequest(unique_name),
+        {role}
+      );
+    } catch (error) {
+      throw error;
+    }
+  }
 };
 
 export default organizationService;
