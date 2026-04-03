@@ -61,6 +61,7 @@ const apiEndpoints = {
   getWorkerById: (org_id: number, id: number) => `/organizations/${org_id}/workers/${id}`,
   deleteWorker: (org_id: number, id: number) => `/organizations/${org_id}/workers/${id}/delete`,
   updateWorker: (org_id: number, id: number) => `/organizations/${org_id}/workers/${id}/update`,
+  getJoinRequests: (org_id: number) => `/organizations/${org_id}/workers/requests`,
 
   // stats
   getClientStats: (org_id: number) => `/organizations/${org_id}/stats/clients`,
