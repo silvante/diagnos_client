@@ -85,7 +85,7 @@ export default function RequestForm() {
 
     if (!name.trim()) return;
 
-    postMutation.mutate(name);
+    postMutation.mutate(role);
   };
 
   return (
