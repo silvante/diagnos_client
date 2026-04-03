@@ -38,7 +38,7 @@ export default function RequestForm() {
 
         onSuccess: (data: any) => {
             let res: ResultType = data;
-            setResult(data);
+            setResult(res);
         },
 
         onError: (error: any) => {

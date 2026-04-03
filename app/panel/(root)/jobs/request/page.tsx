@@ -6,7 +6,7 @@ export default function page() {
     return (
         <div className="space-y-5">
             <div className="flex items-center justify-between">
-                <Heading text="Sizning ishingiz" />
+                <Heading text="So'rov jonatish" />
                 <BackBtn href="http://localhost:3000/panel/jobs" />
             </div>
             <RequestForm />
