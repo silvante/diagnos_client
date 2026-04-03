@@ -25,7 +25,7 @@ interface ResultType {
 
 export default function RequestForm() {
     const [name, setName] = useState("");
-    const [result, setResult] = useState<ResultType>([]);
+    const [result, setResult] = useState<ResultType | null>(null);
     const [error, setError] = useState("");
     const [role, setRole] = useState("");
     const [success, setSuccess] = useState(false)
@@ -36,8 +36,9 @@ export default function RequestForm() {
             return await organizationService.findOrganizations(searchName);
         },
 
-        onSuccess: (data) => {
-            setResult(data || []);
+        onSuccess: (data: any) => {
+            let res: ResultType = data;
+            setResult(data);
         },
 
         onError: (error: any) => {
@@ -107,23 +108,28 @@ export default function RequestForm() {
 
             {mutation.data && (
                 <div className="w-full mx-auto">
-                    <div className="relative h-48 rounded-t-2xl overflow-hidden border border-gray-200 group">
+                    <div className={`relative rounded-t-2xl overflow-hidden border border-gray-200 group ${result?.banner ? "h-48" : "h-23 bg-white"}`}>
 
-                        <Image
-                            src={result.banner.original}
-                            alt={result.name}
-                            fill
-                            className="object-cover group-hover:scale-101 transition-transform duration-300"
-                        />
+                        {
+                            result?.banner && (
+                                <>
+                                    <Image
+                                        src={result?.banner?.original}
+                                        alt={result?.name}
+                                        fill
+                                        className="object-cover group-hover:scale-101 transition-transform duration-300"
+                                    />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+                                </>
+                            )
+                        }
 
-                        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
-
-                        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                        <div className={`absolute bottom-0 left-0 right-0 p-4 ${result?.banner ? "text-white" : "text-black"}`}>
                             <h2 className="text-2xl font-semibold leading-tight">
-                                {result.name}
+                                {result?.name}
                             </h2>
-                            <p className="text-sm text-gray-200">
-                                @{result.unique_name}
+                            <p className={`text-sm ${result?.banner ? "text-gray-200" : "text-gray-500"}`}>
+                                @{result?.unique_name}
                             </p>
                         </div>
                     </div>
@@ -149,7 +155,7 @@ export default function RequestForm() {
                                 </SelectContent>
                             </Select>
 
-                            {success && 
+                            {success &&
                                 <p className="text-green-700">Your request successfully send.</p>
                             }
                             <button
