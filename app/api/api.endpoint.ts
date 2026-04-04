@@ -46,15 +46,6 @@ const apiEndpoints = {
   getUserById: (id: number) => `/user/${id}`,
   getMyWorks: "/user/works",
 
-  // vacancies
-  getVacancyById: (id: number) => `/vacancy/${id}`,
-  getVacancyByAccessId: (a_id: string) => `/vacancy/access/${a_id}`,
-  createVacancy: "/vacancy/create",
-  getAllMyVacancies: "/vacancy/mine",
-  updateVacancy: (id: number) => `/vacancy/${id}/update`,
-  deleteVacancy: (id: number) => `/vacancy/${id}/delete`,
-  searchVacancy: (origin: string, q: string, role: string | null, job: string | null, page: number, limit: number) => `/vacancy/search?origin=${origin}&q=${q}${role ? `&role=${role}` : ""}${job ? `&job=${job}` : ""}&page=${page}&limit=${limit}`,
-
   // workers
   hireWorker: (org_id: number, vacancy_id: number) => `/organizations/${org_id}/workers/${vacancy_id}/hire`,
   getAllWorkers: (org_id: number) => `/organizations/${org_id}/workers`,
