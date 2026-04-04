@@ -1,5 +1,6 @@
 import api from "../api.config";
 import apiEndpoints from "../api.endpoint";
+import { JoinRequest } from "@/app/types/User";
 import { HireWorkerData, UpdateWorkerData } from "./utils/workerTypes";
 
 const workerService = {
@@ -11,9 +12,9 @@ const workerService = {
     }
   },
 
-  getJoinRequests: async (org_id: number) => {
+  getJoinRequests: async (org_id: number): Promise<JoinRequest[]> => {
     try {
-      return await api.get(apiEndpoints.getJoinRequests(org_id));
+      return (await api.get(apiEndpoints.getJoinRequests(org_id))) as JoinRequest[];
     } catch (error) {
       throw error;
     }

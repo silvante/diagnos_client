@@ -1,18 +1,20 @@
 "use client";
 import Heading from "@/app/(global_components)/Heading";
 import workerService from "@/app/api/services/workerService";
+import { Organization } from "@/app/types/User";
 import { useQuery } from "@tanstack/react-query";
-import { BellDot } from "lucide-react";
+import { BellDot, TriangleAlert } from "lucide-react";
 import { useSelector } from "react-redux";
 import NotificationWorkers from "./(components)/NotificationWorkers";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default function GettingJoinRequests() {
-  const { organization } = useSelector((state: any) => state.validator);
+  const organization = useSelector((state: any) => state.validator.organization) as Organization | null;
 
   const { data, isPending, isError } = useQuery({
     queryKey: ["gettingOrganizationRequest", organization?.id],
-    queryFn: () => workerService.getJoinRequests(organization.id),
+    queryFn: () => workerService.getJoinRequests(organization!.id),
     enabled: !!organization?.id,
   })
 
@@ -28,6 +30,14 @@ export default function GettingJoinRequests() {
         <Heading text={`( ${data?.length || 0} )`} />
       </div>
 
+      {isError && (
+        <Alert variant="destructive">
+          <TriangleAlert />
+          <AlertTitle>Xatolik yuz berdi</AlertTitle>
+          <AlertDescription>Ma&apos;lumotlarni yuklashda muammo bo&apos;ldi. Qaytadan urinib ko&apos;ring.</AlertDescription>
+        </Alert>
+      )}
+
       {isPending && (
         <div className="space-y-2">
           <Skeleton className="h-13 w-full rounded-xl" />
@@ -38,7 +48,7 @@ export default function GettingJoinRequests() {
       {data && data.length > 0 && (
         <div className="flex flex-col gap-2">
           {data?.map((item) => (
-            <NotificationWorkers key={item.id} item={item} org={organization} />
+            <NotificationWorkers key={item.id} item={item} org={organization!} />
           ))}
         </div>
       )}
