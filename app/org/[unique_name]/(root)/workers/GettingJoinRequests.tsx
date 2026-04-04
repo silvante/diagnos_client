@@ -7,18 +7,6 @@ import { useSelector } from "react-redux";
 import NotificationWorkers from "./(components)/NotificationWorkers";
 import { Skeleton } from "@/components/ui/skeleton";
 
-type WorkerRequest = {
-  id: number;
-  status: string;
-  role: string;
-  applicant_id: number;
-  applicant: {
-    name: string;
-    avatar: string | null;
-    bio: null | string;
-  };
-};
-
 export default function GettingJoinRequests() {
   const { organization } = useSelector((state: any) => state.validator);
 
@@ -37,7 +25,7 @@ export default function GettingJoinRequests() {
           <BellDot color="#7c3aed" />
           <Heading text="Xabarlar" />
         </div>
-        <Heading text={`(${data?.length || 0})`} />
+        <Heading text={`( ${data?.length || 0} )`} />
       </div>
 
       {isPending && (

@@ -2,8 +2,7 @@
 import BackBtn from "@/app/(global_components)/BackBtn";
 import Heading from "@/app/(global_components)/Heading";
 import { useSelector } from "react-redux";
-import EmpSearchEngine from "./EmploymentSearchEngine";
-import AccessIdForm from "./AccessIdForm";
+import GettingJoinRequests from "../GettingJoinRequests";
 
 const EmploymentPage = () => {
   const { organization } = useSelector((state: any) => state.validator);
@@ -13,8 +12,7 @@ const EmploymentPage = () => {
         <Heading text="Ishga olish" />
         <BackBtn href={`/org/${organization.unique_name}/workers`} />
       </div>
-      <AccessIdForm org={organization} />
-      <EmpSearchEngine organization={organization} />
+      <GettingJoinRequests />
     </div>
   );
 };
