@@ -6,7 +6,7 @@ import { Vacancy } from "@/app/types/User";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BackBtn from "@/app/(global_components)/BackBtn";
-import VacancyDetails from "../../(components)/VacancyDetails";
+import VacancyDetails from "../../(components)/ApplicantDetails";
 import HireingForm from "../../(components)/HireingForm";
 
 export default function VacancyAccessDetailsPage() {

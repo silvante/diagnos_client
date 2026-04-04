@@ -175,10 +175,6 @@ export interface JoinRequest {
   status: string;
   role: string;
   applicant_id: number;
-  applicant: {
-    name: string;
-    avatar: string | null;
-    bio: null | string;
-  };
+  applicant: User;
   created_at: Date;
 }

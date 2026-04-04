@@ -100,7 +100,9 @@ export default function ViewWorkerDetails({ worker, children }: Props) {
                 <p className="text_color text-lg font-semibold w-full truncate">
                   Turlar mavjud emas
                 </p>
-                <p className="text_color w-full truncate">Faqat shifokorlarda mavjud</p>
+                <p className="text_color w-full truncate">
+                  Faqat shifokorlarda mavjud
+                </p>
               </div>
             </div>
           )}

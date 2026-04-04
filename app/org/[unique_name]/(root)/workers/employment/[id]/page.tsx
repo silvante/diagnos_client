@@ -1,35 +1,37 @@
 "use client";
 import Heading from "@/app/(global_components)/Heading";
 import Spinner from "@/app//(global_components)/Spinner";
-import vacancyService from "@/app/api/services/vacancyService";
-import { Vacancy } from "@/app/types/User";
+import { JoinRequest } from "@/app/types/User";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import BackBtn from "@/app/(global_components)/BackBtn";
 import HireingForm from "../(components)/HireingForm";
-import VacancyDetails from "../(components)/VacancyDetails";
+import VacancyDetails from "../(components)/ApplicantDetails";
+import workerService from "@/app/api/services/workerService";
+import { useSelector } from "react-redux";
 
 export default function VacancyDetailsPage() {
   const router = useRouter();
   const params = useParams();
   const { id, unique_name } = params;
-  const [vacancy, setVacancy] = useState<Vacancy | null>(null);
+  const [joinReq, setJoinReq] = useState<JoinRequest | null>(null);
+  const { organization } = useSelector((state: any) => state.validator);
 
-  async function GetVacancy(id: number) {
+  async function GetReq(id: number) {
     try {
-      const res: any = await vacancyService.getById(id);
-      const res_vacancy: Vacancy = res;
-      setVacancy(res_vacancy);
+      const res: any = await workerService.getJoinRequest(organization.id, id);
+      const join_req: JoinRequest = res;
+      setJoinReq(join_req);
     } catch (error) {
       router.push(`/org/${unique_name}/workers/employment`);
     }
   }
 
   useEffect(() => {
-    GetVacancy(Number(id));
+    GetReq(Number(id));
   }, []);
 
-  if (!vacancy) {
+  if (!joinReq) {
     return (
       <div className="w-full h-80 flex justify-center items-center">
         <Spinner />
@@ -39,14 +41,14 @@ export default function VacancyDetailsPage() {
     return (
       <div className="space-y-5">
         <div className="w-full flex justify-between items-center">
-          <Heading text={`Vakansiya - ${vacancy.id}`} />
+          <Heading text={`${joinReq.applicant.name}`} />
           <BackBtn href={`/org/${unique_name}/workers/employment`} />
         </div>
-        <VacancyDetails vacancy={vacancy} />
+        <VacancyDetails applicant={joinReq.applicant} role={joinReq.role} />
         <div className="w-full flex justify-center items-center">
           <Heading text="Ishga olmoqchimisiz?" />
         </div>
-        <HireingForm vacancy={vacancy} />
+        <HireingForm joinReq={joinReq} />
       </div>
     );
   }

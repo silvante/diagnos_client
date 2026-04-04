@@ -56,12 +56,14 @@ export default function DeleteWorkerDialog({ worker, children }: Props) {
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-106.25">
         <DialogHeader>
           <DialogTitle>Ishchini o'chirish</DialogTitle>
           <DialogDescription>
-            Ishchini o'chirish uchun uning foydalanuvchi nomini kiritishingiz kerak{" "}
-            <span className="font-semibold">{worker.worker.username}</span> xavfsizlik sabablarga ko'ra.
+            Ishchini o'chirish uchun uning foydalanuvchi nomini kiritishingiz
+            kerak{" "}
+            <span className="font-semibold">{worker.worker.username}</span>{" "}
+            xavfsizlik sabablarga ko'ra.
           </DialogDescription>
         </DialogHeader>
         {error !== "" && (

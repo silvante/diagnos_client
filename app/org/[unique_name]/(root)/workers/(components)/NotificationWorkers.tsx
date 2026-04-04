@@ -1,7 +1,8 @@
-import { JoinRequest } from "@/app/types/User";
+import { JoinRequest, Organization } from "@/app/types/User";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import Link from "next/link";
 
-export default function NotificationWorkers({ item }: { item: JoinRequest }) {
+export default function NotificationWorkers({ item, org }: { item: JoinRequest, org: Organization }) {
   return (
     <div className="flex items-center justify-between bg-gray-50 border border-slate-300 rounded-xl p-4">
       <div className="flex items-center gap-3">
@@ -32,9 +33,9 @@ export default function NotificationWorkers({ item }: { item: JoinRequest }) {
           Rad etish
         </button>
 
-        <button className="px-4 py-2 cursor-pointer text-sm rounded-lg bg-violet-700 text-white hover:bg-violet-700 transition">
+        <Link href={`/org/${org.unique_name}/workers/employment/${item.id}`} className="px-4 py-2 cursor-pointer text-sm rounded-lg bg-violet-700 text-white hover:bg-violet-700 transition">
           Ishga olish
-        </button>
+        </Link>
       </div>
     </div>
   );

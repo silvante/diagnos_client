@@ -1,7 +1,7 @@
 "use client";
 import Heading from "@/app/(global_components)/Heading";
 import { workerRoles } from "@/app/global/data";
-import { Type, Vacancy } from "@/app/types/User";
+import { JoinRequest, Type } from "@/app/types/User";
 import { useEffect, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { MailWarning, ShieldAlert, X } from "lucide-react";
@@ -32,7 +32,7 @@ import workerService from "@/app/api/services/workerService";
 import { useRouter } from "next/navigation";
 import { pushWorker, setLoading } from "@/app/store/slices/workerSlice";
 
-export default function HireingForm({ vacancy }: { vacancy: Vacancy }) {
+export default function HireingForm({ joinReq }: { joinReq: JoinRequest }) {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [currentRole, setCurrentRole] = useState(workerRoles[0]);
@@ -51,7 +51,7 @@ export default function HireingForm({ vacancy }: { vacancy: Vacancy }) {
 
   // formData
   const [attached_types, setAttachedTypes] = useState<number[]>([]);
-  const [role, setRole] = useState(vacancy.role);
+  const [role, setRole] = useState(joinReq.role);
 
   const [selectedTypes, setSelectedTypes] = useState<Type[]>([]);
 
@@ -119,7 +119,7 @@ export default function HireingForm({ vacancy }: { vacancy: Vacancy }) {
       }
       const res: any = await workerService.hire(
         organization.id,
-        vacancy.id,
+        joinReq.id,
         data
       );
       const res_worker: Worker = res;
