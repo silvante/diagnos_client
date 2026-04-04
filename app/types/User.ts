@@ -169,3 +169,16 @@ export interface Diagnosis {
   reporter_name?: string;
   report?: string;
 }
+
+export interface JoinRequest {
+  id: number;
+  status: string;
+  role: string;
+  applicant_id: number;
+  applicant: {
+    name: string;
+    avatar: string | null;
+    bio: null | string;
+  };
+  created_at: Date;
+}
